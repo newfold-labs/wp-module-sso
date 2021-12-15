@@ -1,0 +1,34 @@
+{
+  "name": "newfold/wp-module-sso",
+  "description": "Single sign-on functionality for WordPress.",
+  "license": "GPL-2.0-or-later",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://bluehost.github.io/satis/",
+      "only": [
+        "bluehost/*",
+        "endurance/*",
+        "mojoness/*",
+        "newfold/*"
+      ]
+    }
+  ],
+  "authors": [
+    {
+      "name": "Micah Wood",
+      "email": "micah@bluehost.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "NewFold\\SSO\\": "includes"
+    },
+    "files": [
+      "bootstrap.php"
+    ]
+  },
+  "require": {
+    "endurance/wp-module-data": "^1.8"
+  }
+}
