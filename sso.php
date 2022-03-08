@@ -1,7 +1,7 @@
 <?php
 
-use NewFold\SSO\SSO_AJAX_Handler;
-use NewFold\SSO\SSO_REST_Controller;
+use NewFoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
+use NewFoldLabs\WP\Module\SSO\SSO_REST_Controller;
 
 new SSO_AJAX_Handler();
 

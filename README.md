@@ -9,27 +9,16 @@ Single sign-on functionality for WordPress.
 
 ## Installation
 
-### 1. Add the Bluehost Satis to your `composer.json`.
+### 1. Add the Newfold Satis to your `composer.json`.
 
  ```bash
- composer config repositories.bluehost composer https://bluehost.github.io/satis
+ composer config repositories.newfold composer https://newfold.github.io/satis
  ```
 
-### 2. Require the `newfold/wp-module-sso` package.
+### 2. Require the `newfold-labs/wp-module-sso` package.
 
  ```bash
- composer require newfold/wp-module-sso
+ composer require newfold-labs/wp-module-sso
  ```
 
-## Usage
-
-## More on NewFold WordPress Modules
-
-* <a href="https://github.com/bluehost/endurance-wp-module-loader#endurance-wordpress-modules">What are modules?</a>
-* <a href="https://github.com/bluehost/endurance-wp-module-loader#creating--registering-a-module">Creating/registering
-  modules</a>
-* <a href="https://github.com/bluehost/endurance-wp-module-loader#installing-from-our-satis">Installing from our
-  Satis</a>
-* <a href="https://github.com/bluehost/endurance-wp-module-loader#local-development">Local development notes</a>
-* <a href="https://github.com/bluehost/endurance-wp-module-loader#understanding-the-module-lifecycle">Understanding the
-  module lifecycle</a>
+[More on NewFold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
