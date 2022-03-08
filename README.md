@@ -4,6 +4,8 @@ height="42" />
 </a>
 
 # WordPress SSO Module
+[![Version Number](https://img.shields.io/github/v/release/newfold-labs/wp-module-sso?color=21a0ed&labelColor=333333)](https://github.com/newfold/wp-module-sso/releases)
+[![License](https://img.shields.io/github/license/newfold-labs/wp-module-sso?labelColor=333333&color=666666)](https://raw.githubusercontent.com/newfold-labs/wp-module-sso/master/LICENSE)
 
 Single sign-on functionality for WordPress.
 
