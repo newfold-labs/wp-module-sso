@@ -9,7 +9,7 @@ class SSO_REST_Controller extends \WP_REST_Controller {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'newfold/v1';
+	protected $namespace = 'newfold-sso/v1';
 
 	/**
 	 * Registers the settings route
