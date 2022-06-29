@@ -189,6 +189,20 @@ class SSO_Helpers {
 			}
 		}
 
+		if ( $url ) {
+			$params = $_GET;
+
+			unset( $params['bounce'] );
+			unset( $params['nonce'] );
+			unset( $params['redirect'] );
+			unset( $params['salt'] );
+			unset( $params['token'] );
+			unset( $params['user'] );
+
+			// Persist all query params not used for SSO
+			$url .= $params ? '?' . http_build_query( $params ) : '';
+		}
+
 		if ( ! $url ) {
 			$url = apply_filters( 'newfold_sso_success_url_default', admin_url() );
 		}
