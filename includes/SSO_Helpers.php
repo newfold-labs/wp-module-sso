@@ -129,6 +129,8 @@ class SSO_Helpers {
 	 */
 	public static function triggerFailure() {
 
+		self::logFailure();
+
 		// Enable legacy action when necessary
 		if ( has_action( 'eig_sso_fail' ) ) {
 			do_action( 'eig_sso_fail' );
