@@ -9,7 +9,10 @@ class SSO_AJAX_Handler {
 	 */
 	public function __construct() {
 
-		$actions = [ SSO_Helpers::ACTION => 'login' ];
+		$actions = [
+			'sso-check'         => 'login', // Legacy action name
+			SSO_Helpers::ACTION => 'login',
+		];
 
 		foreach ( $actions as $action => $methodName ) {
 			add_action( "wp_ajax_{$action}", [ $this, $methodName ] );
