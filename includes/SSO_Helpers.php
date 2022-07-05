@@ -129,6 +129,8 @@ class SSO_Helpers {
 	 */
 	public static function triggerFailure() {
 
+		self::logFailure();
+
 		// Enable legacy action when necessary
 		if ( has_action( 'eig_sso_fail' ) ) {
 			do_action( 'eig_sso_fail' );
@@ -185,6 +187,20 @@ class SSO_Helpers {
 				$url = admin_url( $relative_path );
 				break;
 			}
+		}
+
+		if ( $url ) {
+			$params = $_GET;
+
+			unset( $params['bounce'] );
+			unset( $params['nonce'] );
+			unset( $params['redirect'] );
+			unset( $params['salt'] );
+			unset( $params['token'] );
+			unset( $params['user'] );
+
+			// Persist all query params not used for SSO
+			$url .= $params ? '?' . http_build_query( $params ) : '';
 		}
 
 		if ( ! $url ) {
