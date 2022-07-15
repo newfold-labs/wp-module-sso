@@ -192,6 +192,7 @@ class SSO_Helpers {
 		if ( $url ) {
 			$params = $_GET;
 
+			unset( $params['action'] );
 			unset( $params['bounce'] );
 			unset( $params['nonce'] );
 			unset( $params['redirect'] );
@@ -200,7 +201,12 @@ class SSO_Helpers {
 			unset( $params['user'] );
 
 			// Persist all query params not used for SSO
-			$url .= $params ? '?' . http_build_query( $params ) : '';
+			if ( ! empty( $params ) ) {
+				foreach ( $params as $key => $value ) {
+					$url = add_query_arg( $key, $value, $url );
+				}
+			}
+
 		}
 
 		if ( ! $url ) {
