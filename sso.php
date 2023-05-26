@@ -12,3 +12,18 @@ add_action(
 		$instance->register_routes();
 	}
 );
+
+add_action(
+	'cli_init',
+	function() {
+		WP_CLI::add_command(
+			'newfold sso',
+			'NewFoldLabs\WP\Module\SSO\SSO_CLI',
+			array(
+				'shortdesc' => 'Single sign-on functionality for WordPress.',
+				'longdesc'  => 'Handle single sign-on from Newfold hosting platforms and get magic link.' .
+							PHP_EOL . 'Associative Args: --username --role --email --id --min=MINUTES_UNTIL_EXPIRE --url-only',
+			)
+		);
+	}
+);
