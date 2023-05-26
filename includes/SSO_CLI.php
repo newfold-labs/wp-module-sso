@@ -14,7 +14,7 @@ class SSO_CLI extends \WP_CLI_Command {
 	/**
 	 * @var string - Nonce validation key.
 	 */
-	public static $nonce_slug = 'mojo-sso';
+	public static $nonce_slug = 'newfold-sso';
 
 	/**
 	 * @var string - Nonce action key.
