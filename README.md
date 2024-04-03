@@ -9,6 +9,22 @@ height="42" />
 
 Single sign-on functionality for WordPress.
 
+## Module Responsibilities
+
+- Allows a user to log in to a website automatically using a generated one-time-use link.
+- Login links can be created using two methods:
+    - WP-CLI
+    - WP REST API
+- Generated login links use AJAX to handle login.
+- There is a legacy AJAX method that uses the `sso-check` action and a new AJAX method that uses the `newfold_sso_login` action.
+- In most cases, our internal systems generate login links using WP-CLI.
+
+## Critical Paths
+
+- SSO links can be generated via WP-CLI
+- SSO links can be generated via the WP REST API
+- SSO links successfully log in a user
+
 ## Installation
 
 ### 1. Add the Newfold Satis to your `composer.json`.
