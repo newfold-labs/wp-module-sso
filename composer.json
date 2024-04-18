@@ -37,5 +37,13 @@
   },
   "require": {
     "newfold-labs/wp-module-data": ">=2.1"
+  },
+  "require-dev": {
+    "newfold-labs/wp-php-standards": "^1.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
