@@ -21,8 +21,8 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 			wp_safe_redirect( wp_login_url() );
 			exit;
 		}
-		
-  $has_epoch = preg_match( '/-e(\d+)$/', $nonce, $epoch );
+
+		$has_epoch = preg_match( '/-e(\d+)$/', $nonce, $epoch );
 		$expired   = ( $has_epoch && ( time() - $epoch[1] ) > 300 ) ? true : false;
 
 		// Too many failed attempts
