@@ -22,6 +22,9 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 			exit;
 		}
 
+		$has_epoch = preg_match( '/-e(\d+)$/', $nonce, $epoch );
+		$expired   = ( $has_epoch && ( time() - $epoch[1] ) > 300 ) ? true : false;
+
 		// Too many failed attempts
 		if ( self::shouldThrottle() ) {
 			self::triggerFailure();
@@ -36,8 +39,13 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 		}
 
 		// Validate token
-		$token = substr( base64_encode( hash( 'sha256', $nonce . $salt, false ) ), 0, 64 );
-		if ( get_transient( 'sso_token' ) !== $token ) {
+		$token        = substr( base64_encode( hash( 'sha256', $nonce . $salt, false ) ), 0, 64 );
+		$stored_token = get_transient( 'sso_token' );
+		if ( false === $stored_token ) {
+			$stored_token = get_option( 'sso_token' );
+			delete_option( 'sso_token' );
+		}
+		if ( $expired || $stored_token !== $token ) {
 			self::triggerFailure();
 			exit;
 		}
@@ -69,7 +77,12 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 
 		// If user wasn't found, find first admin user
 		if ( ! $user ) {
-			$users = get_users( array( 'role' => 'administrator', 'number' => 1 ) );
+			$users = get_users(
+				array(
+					'role'   => 'administrator',
+					'number' => 1,
+				)
+			);
 			if ( isset( $users[0] ) && is_a( $users[0], 'WP_User' ) ) {
 				$user = $users[0];
 			}
@@ -77,5 +90,4 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 
 		return $user;
 	}
-
 }
