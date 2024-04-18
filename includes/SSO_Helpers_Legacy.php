@@ -15,14 +15,15 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 	 * @param string $token
 	 */
 	public static function handleLegacyLogin( $nonce, $salt ) {
-		$has_epoch = preg_match( '/-e(\d+)$/', $nonce, $epoch );
-		$expired   = ( $has_epoch && ( time() - $epoch[1] ) > 300 ) ? true : false;
 
 		// Not doing sso
 		if ( ! $nonce || ! $salt ) {
 			wp_safe_redirect( wp_login_url() );
 			exit;
 		}
+		
+  $has_epoch = preg_match( '/-e(\d+)$/', $nonce, $epoch );
+		$expired   = ( $has_epoch && ( time() - $epoch[1] ) > 300 ) ? true : false;
 
 		// Too many failed attempts
 		if ( self::shouldThrottle() ) {
