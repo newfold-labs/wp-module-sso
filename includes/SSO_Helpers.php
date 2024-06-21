@@ -68,7 +68,7 @@ class SSO_Helpers {
 
 		// Validate timeframe
 		$time = array_shift( $parts );
-		if ( ! $time || ( $time + 60 ) < time() ) {
+		if ( ! $time || ( $time + 600 ) < time() ) {
 			return false;
 		}
 
