@@ -39,4 +39,4 @@ Single sign-on functionality for WordPress.
  composer require newfold-labs/wp-module-sso
  ```
 
-[More on NewFold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
+[More on Newfold WordPress Modules](https://github.com/newfold-labs/wp-module-loader)
