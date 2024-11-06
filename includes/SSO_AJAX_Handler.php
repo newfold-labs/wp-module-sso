@@ -25,7 +25,7 @@ class SSO_AJAX_Handler {
 	 * Handle SSO login attempts.
 	 */
 	public function login() {
-		SSO_Helpers::handleLogin( filter_input( INPUT_GET, 'token', FILTER_SANITIZE_STRING ) );
+		SSO_Helpers::handleLogin( htmlspecialchars( strip_tags( filter_input( INPUT_GET, 'token' ) ) ) );
 	}
 
 	/**
@@ -33,8 +33,8 @@ class SSO_AJAX_Handler {
 	 */
 	public function legacyLogin() {
 
-		$nonce = filter_input( INPUT_GET, 'nonce', FILTER_SANITIZE_STRING );
-		$salt  = filter_input( INPUT_GET, 'salt', FILTER_SANITIZE_STRING );
+		$nonce = htmlspecialchars( strip_tags( filter_input( INPUT_GET, 'nonce' ) ) );
+		$salt  = htmlspecialchars( strip_tags( filter_input( INPUT_GET, 'salt' ) ) );
 
 		SSO_Helpers_Legacy::handleLegacyLogin( $nonce, $salt );
 	}
