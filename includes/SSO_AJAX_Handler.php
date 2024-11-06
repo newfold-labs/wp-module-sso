@@ -25,7 +25,8 @@ class SSO_AJAX_Handler {
 	 * Handle SSO login attempts.
 	 */
 	public function login() {
-		SSO_Helpers::handleLogin( htmlspecialchars( strip_tags( filter_input( INPUT_GET, 'token' ) ) ) );	}
+		SSO_Helpers::handleLogin( htmlspecialchars( strip_tags( filter_input( INPUT_GET, 'token' ) ) ) );
+	}
 
 	/**
 	 * Handle legacy SSO login attempts.
