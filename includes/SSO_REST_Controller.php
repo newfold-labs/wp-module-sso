@@ -66,7 +66,7 @@ class SSO_REST_Controller extends \WP_REST_Controller {
 
 		// User must have both the permission and ability to login.
 		if ( ! current_user_can( 'read' ) ) {
-			return new \WP_Error( 'rest_forbidden_context', __( 'Sorry, you are not allowed to access this endpoint.', 'newfold-wp-module-sso' ), array( 'status' => rest_authorization_required_code() ) );
+			return new \WP_Error( 'rest_forbidden_context', __( 'Sorry, you are not allowed to access this endpoint.', 'wp-module-sso' ), array( 'status' => rest_authorization_required_code() ) );
 		}
 
 		return true;

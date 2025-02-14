@@ -16,8 +16,13 @@ if ( function_exists( 'add_action' ) ) {
 			register(
 				[
 					'name'     => 'sso',
-					'label'    => __( 'SSO', 'endurance' ),
+					'label'    => __( 'SSO', 'wp-module-sso' ),
 					'callback' => function () {
+
+						if ( ! defined( 'NFD_SSO_DIR' ) ) {
+							define( 'NFD_SSO_DIR', __DIR__ );
+						}
+
 						require __DIR__ . '/sso.php';
 					},
 					'isActive' => true,
