@@ -27,3 +27,14 @@ add_action(
 		);
 	}
 );
+
+\add_action( 'init',
+	function() {
+		\load_plugin_textdomain(
+			'wp-module-sso',
+			false,
+			NFD_SSO_DIR . '/languages'
+		);
+	}, 
+	100 
+);
