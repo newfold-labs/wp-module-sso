@@ -1,3 +1,7 @@
+# Instructions for Using the Translation Workflow:
+# Detailed guidelines for utilizing the translation workflow can be found in Section 5.12 
+# of our documentation: [How We Work](https://newfold-labs.github.io/how-we-work/).  
+
 name: Crowdin Upload Action
 
 on:
@@ -31,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
           # A numeric ID, found at https://crowdin.com/project/<projectName>/tools/api
-          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
 
           # Visit https://crowdin.com/settings#api-key to create this token
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
