@@ -9,9 +9,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-13T10:59:28+00:00\n"
 "PO-Revision-Date: 2025-02-13 19:38+0530\n"
+"Language: en_GB\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-module-sso\n"
-"Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: bootstrap.php:19
@@ -21,3 +21,20 @@ msgstr "SSO"
 #: includes/SSO_REST_Controller.php:69
 msgid "Sorry, you are not allowed to access this endpoint."
 msgstr "Sorry, you are not allowed to access this endpoint."
+
+#. Translators: %d number
+#: includes/SSO_CLI.php:75
+msgid "Single-use login link valid for %d minutes"
+msgstr "Single-use login link valid for %d minutes"
+
+#: includes/SSO_CLI.php:197
+msgid "Success: "
+msgstr "Success: "
+
+#: includes/SSO_CLI.php:230
+msgid "Error: "
+msgstr "Error: "
+
+#: includes/SSO_CLI.php:279
+msgid "Provided $data wasn't valid array or JSON string."
+msgstr "Provided $data wasn't valid array or JSON string."
