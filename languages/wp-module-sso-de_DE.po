@@ -28,14 +28,18 @@ msgstr "SSO"
 msgid "Single-use login link valid for %d minutes"
 msgstr "Einmaliger Anmeldelink gültig für %d Minuten"
 
-#: includes/SSO_CLI.php:197
+#: includes/SSO_CLI.php:196
 msgid "Success: "
 msgstr "Erfolg: "
 
-#: includes/SSO_CLI.php:230
+#: includes/SSO_CLI.php:229
 msgid "Error: "
 msgstr "Fehler: "
 
-#: includes/SSO_CLI.php:279
+#: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "Die bereitgestellte $data war kein gültiges Array oder keine gültige JSON-Zeichenkette."
+
+#: includes/SSO_REST_Controller.php:69
+msgid "Sorry, you are not allowed to access this endpoint."
+msgstr "Entschuldigung, Sie sind nicht berechtigt, auf diesen Endpunkt zuzugreifen."

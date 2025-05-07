@@ -32,14 +32,14 @@ msgstr "Lo sentimos, no puedes acceder a este endpoint."
 msgid "Single-use login link valid for %d minutes"
 msgstr "Enlace de inicio de sesión de un solo uso válido durante %d minutos"
 
-#: includes/SSO_CLI.php:197
+#: includes/SSO_CLI.php:196
 msgid "Success: "
 msgstr "Éxito: "
 
-#: includes/SSO_CLI.php:230
+#: includes/SSO_CLI.php:229
 msgid "Error: "
 msgstr "Error: "
 
-#: includes/SSO_CLI.php:279
+#: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "Los datos proporcionados no eran un array válido ni una cadena JSON válida."

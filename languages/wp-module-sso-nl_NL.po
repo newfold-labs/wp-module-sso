@@ -32,14 +32,14 @@ msgstr "Sorry, je hebt geen toegang tot dit eindpunt."
 msgid "Single-use login link valid for %d minutes"
 msgstr "Eenmalige inloglink geldig voor %d minuten"
 
-#: includes/SSO_CLI.php:197
+#: includes/SSO_CLI.php:196
 msgid "Success: "
 msgstr "Succes: "
 
-#: includes/SSO_CLI.php:230
+#: includes/SSO_CLI.php:229
 msgid "Error: "
 msgstr "Fout: "
 
-#: includes/SSO_CLI.php:279
+#: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "De opgegeven $data was geen geldige array of JSON-tekenreeks."

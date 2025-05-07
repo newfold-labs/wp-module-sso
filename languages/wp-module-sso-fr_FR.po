@@ -32,14 +32,14 @@ msgstr "Désolé, vous n'êtes pas autorisé à accéder à ce terminal."
 msgid "Single-use login link valid for %d minutes"
 msgstr "Lien de connexion à usage unique valide pendant %d minutes"
 
-#: includes/SSO_CLI.php:197
+#: includes/SSO_CLI.php:196
 msgid "Success: "
 msgstr "Succès : "
 
-#: includes/SSO_CLI.php:230
+#: includes/SSO_CLI.php:229
 msgid "Error: "
 msgstr "Erreur : "
 
-#: includes/SSO_CLI.php:279
+#: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "Les données $data fournies n'étaient pas un tableau valide ou une chaîne JSON valide."

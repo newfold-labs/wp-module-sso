@@ -27,14 +27,14 @@ msgstr "Sorry, you are not allowed to access this endpoint."
 msgid "Single-use login link valid for %d minutes"
 msgstr "Single-use login link valid for %d minutes"
 
-#: includes/SSO_CLI.php:197
+#: includes/SSO_CLI.php:196
 msgid "Success: "
 msgstr "Success: "
 
-#: includes/SSO_CLI.php:230
+#: includes/SSO_CLI.php:229
 msgid "Error: "
 msgstr "Error: "
 
-#: includes/SSO_CLI.php:279
+#: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "Provided $data wasn't valid array or JSON string."
