@@ -71,10 +71,10 @@ class SSO_CLI extends \WP_CLI_Command {
 		if ( isset( $assoc_args['url-only'] ) ) {
 			\WP_CLI::log( $link );
 		} else {
-			$this->success( 'Single-use login link valid for ' . $this->expiry_min . ' minutes' );
+			/* Translators: %d number */
+			$this->success( sprintf( __( 'Single-use login link valid for %d minutes', 'wp-module-sso' ), $this->expiry_min ) );
 			$this->colorize_log( $link, 'underline' );
 		}
-
 	}
 
 	/**
@@ -142,7 +142,7 @@ class SSO_CLI extends \WP_CLI_Command {
 	}
 
 
-    /**
+	/**
 	 * Helper to format data into tables.
 	 *
 	 * By default, the method creates simple $key => $value tables.
@@ -193,7 +193,7 @@ class SSO_CLI extends \WP_CLI_Command {
 	 * @param string $message
 	 */
 	protected function success( $message, $silent = false ) {
-		$pre_ = $silent ? '' : 'Success: ';
+		$pre_ = $silent ? '' : __( 'Success: ', 'wp-module-sso' );
 		$this->colorize_log( $pre_ . $message, '2', 'k', '✅' );
 	}
 
@@ -226,7 +226,7 @@ class SSO_CLI extends \WP_CLI_Command {
 	 * @throws \WP_CLI\ExitException
 	 */
 	protected function error( $message, $silent = false, $halt = true, $code = 400 ) {
-		$pre_ = $silent ? '' : 'Error: ';
+		$pre_ = $silent ? '' : __( 'Error: ', 'wp-module-sso' );
 		$this->colorize_log( $pre_ . $message, '1', 'W', '🛑️' );
 		if ( $halt ) {
 			WP_CLI::halt( $code );
@@ -275,7 +275,7 @@ class SSO_CLI extends \WP_CLI_Command {
 		} elseif ( is_array( json_decode( $data, true ) ) ) {
 			\WP_CLI::log( $data );
 		} else {
-			$this->error( 'Provided $data wasn\'t valid array or JSON string.' );
+			$this->error( __( 'Provided $data wasn\'t valid array or JSON string.', 'wp-module-sso' ) );
 		}
 	}
 
