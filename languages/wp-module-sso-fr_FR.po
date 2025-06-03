@@ -29,6 +29,7 @@ msgstr "Désolé, vous n'êtes pas autorisé à accéder à ce terminal."
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
+#, php-format
 msgid "Single-use login link valid for %d minutes"
 msgstr "Lien de connexion à usage unique valide pendant %d minutes"
 

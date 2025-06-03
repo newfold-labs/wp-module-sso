@@ -29,6 +29,7 @@ msgstr "Lo sentimos, no puedes acceder a este endpoint."
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
+#, php-format
 msgid "Single-use login link valid for %d minutes"
 msgstr "Enlace de inicio de sesión de un solo uso válido durante %d minutos"
 

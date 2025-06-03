@@ -19,6 +19,7 @@ msgstr "SSO"
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
+#, php-format
 msgid "Single-use login link valid for %d minutes"
 msgstr "Enlace de acceso de un solo uso válido por %d minutos"
 
