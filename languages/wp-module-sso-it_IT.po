@@ -29,6 +29,7 @@ msgstr "Siamo spiacenti, non sei autorizzato ad accedere a questo endpoint."
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
+#, php-format
 msgid "Single-use login link valid for %d minutes"
 msgstr "Link di accesso monouso valido per %d minuti"
 

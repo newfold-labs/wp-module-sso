@@ -29,6 +29,7 @@ msgstr "Sorry, je hebt geen toegang tot dit eindpunt."
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
+#, php-format
 msgid "Single-use login link valid for %d minutes"
 msgstr "Eenmalige inloglink geldig voor %d minuten"
 
