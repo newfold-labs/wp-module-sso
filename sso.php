@@ -15,7 +15,7 @@ add_action(
 
 add_action(
 	'cli_init',
-	function() {
+	function () {
 		WP_CLI::add_command(
 			'newfold sso',
 			'NewFoldLabs\WP\Module\SSO\SSO_CLI',
@@ -28,29 +28,33 @@ add_action(
 	}
 );
 
-add_action( 'init',
-	function() {
+add_action(
+	'init',
+	function () {
 		load_plugin_textdomain(
 			'wp-module-sso',
 			false,
 			NFD_SSO_DIR . '/languages'
 		);
-	}, 
-	100 
+	},
+	100
 );
 
-add_action( 'login_message', function() {
-	$error = sanitize_key( $_GET['error'] ?? '' );
-	if ( ! empty( $error ) ) {
-		$message = '';
-		switch ( $error ) {
-			case 'invalid_username':
-				$message = __( 'SSO failed: username cannot contain invalid characters.', 'wp-module-sso' );
-				break;
-			default:
-				$message = __( 'An unknown error occurred. Please try again.', 'wp-module-sso' );
-				break;
+add_action(
+	'login_message',
+	function () {
+		$error = sanitize_key( $_GET['error'] ?? '' );
+		if ( ! empty( $error ) ) {
+			$message = '';
+			switch ( $error ) {
+				case 'invalid_username':
+					$message = __( 'SSO failed: username cannot contain invalid characters.', 'wp-module-sso' );
+					break;
+				default:
+					$message = __( 'An unknown error occurred. Please try again.', 'wp-module-sso' );
+					break;
+			}
+			return "<div class='login-error' style='color: red; font-weight: bold;'>{$message}</div>";
 		}
-		return "<div class='login-error' style='color: red; font-weight: bold;'>{$message}</div>";
 	}
-});
+);
