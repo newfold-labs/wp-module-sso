@@ -38,6 +38,13 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 			exit;
 		}
 
+		if ( $user ) {
+			if ( preg_match("/['\"\\\\]/", $user->user_login ) ) {
+				self::triggerFailure( 'invalid_username' );
+				exit;
+			}
+		}
+
 		// Validate token
 		$token        = substr( base64_encode( hash( 'sha256', $nonce . $salt, false ) ), 0, 64 );
 		$stored_token = get_transient( 'sso_token' );

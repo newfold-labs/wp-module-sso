@@ -126,8 +126,10 @@ class SSO_Helpers {
 
 	/**
 	 * Trigger an SSO failure.
+	 *
+	 * @param string $error_type type of error
 	 */
-	public static function triggerFailure() {
+	public static function triggerFailure( $error_type = '') {
 
 		self::logFailure();
 
@@ -138,7 +140,18 @@ class SSO_Helpers {
 
 		do_action( 'newfold_sso_fail' );
 
-		wp_safe_redirect( wp_login_url() );
+		if ( empty( $error_type ) ) {
+			wp_safe_redirect( wp_login_url() );
+		} else {
+			wp_safe_redirect(
+				add_query_arg(
+					array(
+						'error'   => $error_type,
+					),
+					wp_login_url()
+				)
+			);
+		}
 		exit;
 
 	}
@@ -248,7 +261,14 @@ class SSO_Helpers {
 			exit;
 		}
 
-		self::triggerSuccess( self::getUserFromToken( $token ) );
+		$user = self::getUserFromToken( $token );
+		if ( $user ) {
+			if ( preg_match("/['\"\\\\]/", $user->user_login ) ) {
+				self::triggerFailure( 'invalid_username' );
+				exit;
+			}
+		}
+		self::triggerSuccess( $user );
 
 	}
 
