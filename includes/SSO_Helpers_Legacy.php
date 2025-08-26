@@ -39,7 +39,7 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 		}
 
 		if ( $user ) {
-			if ( preg_match( "/['\"\\\\<]/", $user->user_login ) ) {
+			if ( preg_match( "/['\"\\\\<|]/", $user->user_login ) ) {
 				self::triggerFailure( 'invalid_username' );
 				exit;
 			}

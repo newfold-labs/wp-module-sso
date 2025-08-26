@@ -260,7 +260,7 @@ class SSO_Helpers {
 
 		$user = self::getUserFromToken( $token );
 		if ( $user ) {
-			if ( preg_match( "/['\"\\\\]/", $user->user_login ) ) {
+			if ( preg_match( "/['\"\\\\<|]/", $user->user_login ) ) {
 				self::triggerFailure( 'invalid_username' );
 				exit;
 			}
