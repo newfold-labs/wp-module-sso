@@ -29,7 +29,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "NewFoldLabs\\WP\\Module\\SSO\\": "includes"
+      "NewfoldLabs\\WP\\Module\\SSO\\": "includes"
     },
     "files": [
       "bootstrap.php"
@@ -65,12 +65,12 @@
       "@i18n-json"
     ],
     "i18n-ci-pre": [
-        "@i18n-pot",
-        "@i18n-po"
+      "@i18n-pot",
+      "@i18n-po"
     ],
     "i18n-ci-post": [
-        "@i18n-json",
-        "@i18n-php"
+      "@i18n-json",
+      "@i18n-php"
     ],
     "lint": "vendor/bin/phpcs --standard=phpcs.xml -s ."
   }
