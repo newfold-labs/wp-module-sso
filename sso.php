@@ -1,7 +1,7 @@
 <?php
 
-use NewFoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
-use NewFoldLabs\WP\Module\SSO\SSO_REST_Controller;
+use NewfoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
+use NewfoldLabs\WP\Module\SSO\SSO_REST_Controller;
 
 new SSO_AJAX_Handler();
 
@@ -18,7 +18,7 @@ add_action(
 	function() {
 		WP_CLI::add_command(
 			'newfold sso',
-			'NewFoldLabs\WP\Module\SSO\SSO_CLI',
+			'NewfoldLabs\WP\Module\SSO\SSO_CLI',
 			array(
 				'shortdesc' => 'Single sign-on functionality for WordPress.',
 				'longdesc'  => 'Handle single sign-on from Newfold hosting platforms and get magic link.' .

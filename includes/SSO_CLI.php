@@ -1,5 +1,5 @@
 <?php
-namespace NewFoldLabs\WP\Module\SSO;
+namespace NewfoldLabs\WP\Module\SSO;
 
 /**
  * Class SSO_CLI
