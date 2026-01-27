@@ -17,7 +17,7 @@ class SSO_Helpers {
 	/**
 	 * Generate an SSO token for a user.
 	 *
-	 * @param int $user_id
+	 * @param int $user_id user id
 	 *
 	 * @return string
 	 */
@@ -25,11 +25,11 @@ class SSO_Helpers {
 		return base64_encode(
 			implode(
 				':',
-				[
+				array(
 					$user_id,
 					time(),
-					wp_generate_password( 64, true, true )
-				]
+					wp_generate_password( 64, true, true ),
+				)
 			)
 		);
 	}
@@ -126,8 +126,10 @@ class SSO_Helpers {
 
 	/**
 	 * Trigger an SSO failure.
+	 *
+	 * @param string $error_type type of error
 	 */
-	public static function triggerFailure() {
+	public static function triggerFailure( $error_type = '' ) {
 
 		self::logFailure();
 
@@ -138,9 +140,19 @@ class SSO_Helpers {
 
 		do_action( 'newfold_sso_fail' );
 
-		wp_safe_redirect( wp_login_url() );
+		if ( empty( $error_type ) ) {
+			wp_safe_redirect( wp_login_url() );
+		} else {
+			wp_safe_redirect(
+				add_query_arg(
+					array(
+						'error' => $error_type,
+					),
+					wp_login_url()
+				)
+			);
+		}
 		exit;
-
 	}
 
 	/**
@@ -168,7 +180,6 @@ class SSO_Helpers {
 
 		wp_safe_redirect( $redirect );
 		exit;
-
 	}
 
 	/**
@@ -206,7 +217,6 @@ class SSO_Helpers {
 					$url = add_query_arg( $key, $value, $url );
 				}
 			}
-
 		}
 
 		if ( ! $url ) {
@@ -248,8 +258,13 @@ class SSO_Helpers {
 			exit;
 		}
 
-		self::triggerSuccess( self::getUserFromToken( $token ) );
-
+		$user = self::getUserFromToken( $token );
+		if ( $user ) {
+			if ( preg_match( "/['\"\\\\<|]/", $user->user_login ) ) {
+				self::triggerFailure( 'invalid_username' );
+				exit;
+			}
+		}
+		self::triggerSuccess( $user );
 	}
-
 }
