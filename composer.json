@@ -5,6 +5,10 @@
   "repositories": [
     {
       "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
       "url": "https://newfold-labs.github.io/satis/",
       "only": [
         "newfold-labs/*"
@@ -40,14 +44,23 @@
   },
   "require-dev": {
     "newfold-labs/wp-php-standards": "^1.2",
-    "wp-cli/i18n-command": "^2.6.6"
+    "wp-cli/i18n-command": "^2.6.6",
+    "johnpbloch/wordpress": "@stable",
+    "lucatume/wp-browser": "*",
+    "phpunit/phpcov": "*"
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true,
+      "johnpbloch/wordpress-core-installer": true
     },
     "platform": {
-      "php": "7.3.0"
+      "php": "7.4.33"
+    },
+    "preferred-install": {
+      "newfold-labs/*": "source",
+      "*": "dist"
     }
   },
   "scripts": {
@@ -72,6 +85,8 @@
       "@i18n-json",
       "@i18n-php"
     ],
-    "lint": "vendor/bin/phpcs --standard=phpcs.xml -s ."
+    "lint": "vendor/bin/phpcs --standard=phpcs.xml -s .",
+    "test": "codecept run wpunit",
+    "test-coverage": "codecept run wpunit --coverage wpunit.cov && phpcov merge --php tests/_output/merged.cov --html tests/_output/html tests/_output && echo \"open tests/_output/html/index.html to view the report\""
   }
 }
