@@ -1,23 +1,24 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: newfold-labswp-module-staging\n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-sso/issues\n"
+"POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
+"PO-Revision-Date: 2025-02-19 14:21\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
-"PO-Revision-Date: 2025-02-19 14:21\n"
-"Language: es_ES\n"
-"X-Generator: WP-CLI 2.11.0\n"
-"X-Domain: wp-module-sso\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: newfold-labswp-module-staging\n"
-"X-Crowdin-Project-ID: 764889\n"
-"X-Crowdin-Language: es-ES\n"
 "X-Crowdin-File: wp-module-sso.pot\n"
 "X-Crowdin-File-ID: 22\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-Project: newfold-labswp-module-staging\n"
+"X-Crowdin-Project-ID: 764889\n"
+"X-Domain: wp-module-sso\n"
+"X-Generator: WP-CLI 2.11.0\n"
 
 #: bootstrap.php:19
 msgid "SSO"
@@ -43,4 +44,657 @@ msgstr "Error: "
 
 #: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
-msgstr "Los datos proporcionados no eran un array válido ni una cadena JSON válida."
+msgstr ""
+"Los datos proporcionados no eran un array válido ni una cadena JSON válida."
+
+#: wordpress/wp-includes/blocks/widget-group/block.json
+msgctxt "block title"
+msgid "Widget Group"
+msgstr "Grupo de widgets"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Color name"
+msgid "Base"
+msgstr "Base"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr "Contrast"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 1"
+msgstr "Acento 1"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 2"
+msgstr "Accent 2"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 3"
+msgstr "Accent 3"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 4"
+msgstr "Accent 4"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 5"
+msgstr "Accent 5"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Color name"
+msgid "Accent 6"
+msgstr "Accent 6"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Tiny"
+msgstr "Tiny"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "X-Small"
+msgstr "X-Small"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr "Pequeño"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Regular"
+msgstr "Regular"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr "Grande"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "X-Large"
+msgstr "X-Large"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Space size name"
+msgid "XX-Large"
+msgstr "XX-Large"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Pequeño"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr "Medio"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Grande"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-includes/theme.json
+msgctxt "Font size name"
+msgid "Extra Large"
+msgstr "Extra Grande"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Font size name"
+msgid "Extra Extra Large"
+msgstr "Extra Extra Grande"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Font family name"
+msgid "Manrope"
+msgstr "Manrope"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Font family name"
+msgid "Fira Code"
+msgstr "Código Fira"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Cabecera"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Vertical site header"
+msgstr "Cabecera vertical del sitio"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Header with large title"
+msgstr "Cabecera con título grande"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Pie de página"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Footer Columns"
+msgstr "Columnas de pie de página"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+msgctxt "Template part name"
+msgid "Footer Newsletter"
+msgstr "Boletín de pie"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr "Barra lateral"
+
+#: wordpress/wp-content/themes/twentytwentyfive/theme.json
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Custom template name"
+msgid "Page No Title"
+msgstr "Página sin título"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Duotone name"
+msgid "Black and white"
+msgstr "Blanco y negro"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Duotone name"
+msgid "Black and sandstone"
+msgstr "Negro y arenisca"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Duotone name"
+msgid "Black and rust"
+msgstr "Negro y óxido"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Duotone name"
+msgid "Black and sage"
+msgstr "Negro y salvia"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Duotone name"
+msgid "Black and pastel blue"
+msgstr "Negro y azul pastel"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft beige to white"
+msgstr "Beige suave vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft sandstone to white"
+msgstr "De arenisca blanda vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft rust to white"
+msgstr "De óxido suave vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft sage to white"
+msgstr "De salvia suave vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft mint to white"
+msgstr "De menta suave vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical soft pewter to white"
+msgstr "De peltre blando vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard beige to white"
+msgstr "Beige duro vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard sandstone to white"
+msgstr "De arenisca dura vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard rust to white"
+msgstr "De óxido duro vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard sage to white"
+msgstr "De salvia dura vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard mint to white"
+msgstr "De verde duro vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Gradient name"
+msgid "Vertical hard pewter to white"
+msgstr "De estaño duro vertical a blanco"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Base / Two"
+msgstr "Base / Dos"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Contrast / Two"
+msgstr "Contrast / Two"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Contrast / Three"
+msgstr "Contrast / Three"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr "Accent"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Accent / Two"
+msgstr "Acento / Dos"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Accent / Three"
+msgstr "Acento / Tres"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Accent / Four"
+msgstr "Accent / Four"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Color name"
+msgid "Accent / Five"
+msgstr "Accent / Five"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "1"
+msgstr "1"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "2"
+msgstr "2"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "3"
+msgstr "3"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "4"
+msgstr "4"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "5"
+msgstr "5"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Space size name"
+msgid "6"
+msgstr "6"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr "Inter"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Font family name"
+msgid "Cardo"
+msgstr "Cardo"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Font family name"
+msgid "System Sans-serif"
+msgstr "Sistema Sans-serif"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Font family name"
+msgid "System Serif"
+msgstr "System Serif"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Template part name"
+msgid "Post Meta"
+msgstr "Post Meta"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Custom template name"
+msgid "Page with Sidebar"
+msgstr "Página con barra lateral"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Custom template name"
+msgid "Page with Wide Image"
+msgstr "Página con imagen ancha"
+
+#: wordpress/wp-content/themes/twentytwentyfour/theme.json
+msgctxt "Custom template name"
+msgid "Single with Sidebar"
+msgstr "Single con barra lateral"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr "Blank"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Custom template name"
+msgid "Blog (Alternative)"
+msgstr "Blog (Alternativa)"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Custom template name"
+msgid "404"
+msgstr "404"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr "Primario"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr "Secundario"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Color name"
+msgid "Tertiary"
+msgstr "Terciario"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Font family name"
+msgid "DM Sans"
+msgstr "DM Sans"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Font family name"
+msgid "IBM Plex Mono"
+msgstr "IBM Plex Mono"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Font family name"
+msgid "System Font"
+msgstr "System Font"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Font family name"
+msgid "Source Serif Pro"
+msgstr "Fuente: Serif Pro"
+
+#: wordpress/wp-content/themes/twentytwentythree/theme.json
+msgctxt "Template part name"
+msgid "Comments Template Part"
+msgstr "Parte de la plantilla de comentarios"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Dark grayscale"
+msgstr "Escala de grises oscuros"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Grayscale"
+msgstr "Grayscale"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Purple and yellow"
+msgstr "Púrpura y amarillo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Blue and red"
+msgstr "Azul y rojo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Midnight"
+msgstr "Midnight"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Magenta and yellow"
+msgstr "Magenta y amarillo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Purple and green"
+msgstr "Púrpura y verde"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Duotone name"
+msgid "Blue and orange"
+msgstr "Azul y naranja"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Vivid cyan blue to vivid purple"
+msgstr "Azul cian vivo a púrpura vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Light green cyan to vivid green cyan"
+msgstr "Cian verde claro a cian verde vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous vivid amber to luminous vivid orange"
+msgstr "De ámbar vívido luminoso a naranja vívido luminoso"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous vivid orange to vivid red"
+msgstr "De naranja brillante intenso a rojo vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Very light gray to cyan bluish gray"
+msgstr "Gris muy claro a gris azulado cian"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Cool to warm spectrum"
+msgstr "Espectro frío a cálido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Blush light purple"
+msgstr "Rubor púrpura claro"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Blush bordeaux"
+msgstr "Blush burdeos"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Luminous dusk"
+msgstr "Crepúsculo luminoso"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Pale ocean"
+msgstr "Océano pálido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Electric grass"
+msgstr "Césped eléctrico"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Gradient name"
+msgid "Midnight"
+msgstr "Medianoche"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Black"
+msgstr "Negro"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Cyan bluish gray"
+msgstr "Gris azulado cian"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr "Blanco"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Pale pink"
+msgstr "Rosa pálido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid red"
+msgstr "Rojo vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Luminous vivid orange"
+msgstr "Naranja brillante y vívido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Luminous vivid amber"
+msgstr "Ámbar luminoso y vívido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Light green cyan"
+msgstr "Cian verde claro"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid green cyan"
+msgstr "Cian verde vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Pale cyan blue"
+msgstr "Azul cian pálido"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid cyan blue"
+msgstr "Azul cian vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Color name"
+msgid "Vivid purple"
+msgstr "Púrpura vivo"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Square - 1:1"
+msgstr "Cuadrado - 1:1"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Standard - 4:3"
+msgstr "Estándar - 4:3"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Portrait - 3:4"
+msgstr "Retrato - 3:4"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Classic - 3:2"
+msgstr "Classic - 3:2"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Classic Portrait - 2:3"
+msgstr "Classic Portrait - 2:3"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Wide - 16:9"
+msgstr "Ancho - 16:9"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Aspect ratio name"
+msgid "Tall - 9:16"
+msgstr "Alto - 9:16"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Natural"
+msgstr "Natural"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Deep"
+msgstr "Deep"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Sharp"
+msgstr "Sharp"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Outlined"
+msgstr "Perfilado"
+
+#: wordpress/wp-includes/theme.json
+msgctxt "Shadow name"
+msgid "Crisp"
+msgstr "Crisp"
