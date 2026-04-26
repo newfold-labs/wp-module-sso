@@ -1,9 +1,11 @@
 <?php
 
 use NewfoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
+use NewfoldLabs\WP\Module\SSO\SSO_Hosting_Login;
 use NewfoldLabs\WP\Module\SSO\SSO_REST_Controller;
 
 new SSO_AJAX_Handler();
+new SSO_Hosting_Login();
 
 add_action(
 	'rest_api_init',

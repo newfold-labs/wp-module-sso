@@ -22,6 +22,15 @@ if ( function_exists( 'add_action' ) ) {
 						if ( ! defined( 'NFD_SSO_DIR' ) ) {
 							define( 'NFD_SSO_DIR', __DIR__ );
 						}
+						if ( ! defined( 'NFD_SSO_URL' ) ) {
+							define( 'NFD_SSO_URL', plugins_url( '', __DIR__ . '/sso.php' ) );
+						}
+						if ( ! defined( 'NFD_SSO_VERSION' ) ) {
+							// Update on every release. Used as the asset cache-buster for
+							// enqueued styles/scripts. There is currently no `version` field
+							// in this module's composer.json, so this is the de-facto source.
+							define( 'NFD_SSO_VERSION', '1.2.1' );
+						}
 
 						require __DIR__ . '/sso.php';
 					},
