@@ -17,7 +17,7 @@ add_action(
 
 add_action(
 	'cli_init',
-	function() {
+	function () {
 		WP_CLI::add_command(
 			'newfold sso',
 			'NewfoldLabs\WP\Module\SSO\SSO_CLI',
@@ -30,13 +30,14 @@ add_action(
 	}
 );
 
-\add_action( 'init',
-	function() {
+\add_action(
+	'init',
+	function () {
 		\load_plugin_textdomain(
 			'wp-module-sso',
 			false,
 			NFD_SSO_DIR . '/languages'
 		);
-	}, 
-	100 
+	},
+	100
 );

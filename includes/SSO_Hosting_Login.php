@@ -28,6 +28,10 @@ class SSO_Hosting_Login {
 	const FILTER       = 'newfold/sso/hosting_login';
 	const STYLE_HANDLE = 'nfd-sso-hosting-login';
 
+	/**
+	 * Register the WordPress hooks that enqueue the stylesheet and render the
+	 * button on wp-login.php.
+	 */
 	public function __construct() {
 		add_action( 'login_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		// Late priority so our markup renders after any other login_form callbacks
@@ -62,6 +66,10 @@ class SSO_Hosting_Login {
 		return $config;
 	}
 
+	/**
+	 * Enqueue the button stylesheet on wp-login.php. Skipped when the filter
+	 * is unset or the resolved config is incomplete.
+	 */
 	public function enqueue_styles() {
 		if ( null === $this->get_config() ) {
 			return;
@@ -75,6 +83,10 @@ class SSO_Hosting_Login {
 		);
 	}
 
+	/**
+	 * Render the button markup. No-op when the filter is unset or the resolved
+	 * config is missing required fields.
+	 */
 	public function render() {
 		$config = $this->get_config();
 		if ( null === $config ) {
@@ -100,7 +112,7 @@ class SSO_Hosting_Login {
 	 */
 	protected static function allowed_svg_tags() {
 		return array(
-			'svg'  => array(
+			'svg'    => array(
 				'class'        => true,
 				'fill'         => true,
 				'height'       => true,
@@ -110,14 +122,14 @@ class SSO_Hosting_Login {
 				'width'        => true,
 				'xmlns'        => true,
 			),
-			'g'    => array(
+			'g'      => array(
 				'fill'              => true,
 				'stroke'            => true,
 				'stroke-miterlimit' => true,
 				'stroke-width'      => true,
 				'transform'         => true,
 			),
-			'path' => array(
+			'path'   => array(
 				'd'               => true,
 				'fill'            => true,
 				'opacity'         => true,
@@ -127,7 +139,7 @@ class SSO_Hosting_Login {
 				'stroke-width'    => true,
 				'transform'       => true,
 			),
-			'rect' => array(
+			'rect'   => array(
 				'fill'      => true,
 				'height'    => true,
 				'rx'        => true,
@@ -142,7 +154,7 @@ class SSO_Hosting_Login {
 				'fill' => true,
 				'r'    => true,
 			),
-			'text' => array(
+			'text'   => array(
 				'fill'        => true,
 				'font-family' => true,
 				'font-size'   => true,

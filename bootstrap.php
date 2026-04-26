@@ -14,7 +14,7 @@ if ( function_exists( 'add_action' ) ) {
 			remove_action( 'wp_ajax_sso-check', 'sso_check' );
 
 			register(
-				[
+				array(
 					'name'     => 'sso',
 					'label'    => __( 'SSO', 'wp-module-sso' ),
 					'callback' => function () {
@@ -36,9 +36,8 @@ if ( function_exists( 'add_action' ) ) {
 					},
 					'isActive' => true,
 					'isHidden' => true,
-				]
+				)
 			);
-
 		}
 	);
 
