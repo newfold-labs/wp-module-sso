@@ -100,7 +100,7 @@ class SSO_Hosting_Login {
 			)
 			: '';
 
-		require __DIR__ . '/views/hosting-login.php';
+		require NFD_SSO_DIR . '/includes/views/hosting-login.php';
 	}
 
 	/**
