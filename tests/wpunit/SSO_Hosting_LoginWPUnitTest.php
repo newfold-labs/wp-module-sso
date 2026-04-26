@@ -10,6 +10,8 @@ namespace NewfoldLabs\WP\Module\SSO;
 class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 
 	/**
+	 * Renderer instance under test.
+	 *
 	 * @var SSO_Hosting_Login
 	 */
 	private $instance;
@@ -152,7 +154,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * accent_color is exposed as an inline CSS custom property on the wrapper.
+	 * The accent_color value is exposed as an inline CSS custom property on the wrapper.
 	 */
 	public function test_render_includes_accent_color_as_css_variable() {
 		$this->configure( array( 'accent_color' => '#1b4fd8' ) );
@@ -184,7 +186,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * wp_kses strips disallowed tags (e.g. <script>) inside the icon SVG.
+	 * Disallowed tags (e.g. <script>) inside the icon SVG are stripped by wp_kses.
 	 */
 	public function test_render_strips_disallowed_svg_tags() {
 		$malicious = '<svg><script>alert(1)</script><rect x="0" y="0" width="4" height="4"/></svg>';
@@ -215,7 +217,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * new_tab=true adds target=_blank with rel=noopener noreferrer.
+	 * Setting new_tab=true adds target=_blank with rel=noopener noreferrer.
 	 */
 	public function test_render_adds_target_blank_when_new_tab() {
 		$this->configure( array( 'new_tab' => true ) );
@@ -226,7 +228,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * new_tab unset (or false) means no target attribute is rendered.
+	 * When new_tab is unset (or false), no target attribute is rendered.
 	 */
 	public function test_render_omits_target_when_new_tab_false() {
 		$this->configure();
@@ -234,7 +236,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * enqueue_styles is a no-op when no consumer has populated the filter.
+	 * The enqueue_styles call is a no-op when no consumer has populated the filter.
 	 */
 	public function test_enqueue_styles_does_nothing_when_disabled() {
 		$this->instance->enqueue_styles();
@@ -242,7 +244,7 @@ class SSO_Hosting_LoginWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCas
 	}
 
 	/**
-	 * enqueue_styles registers the stylesheet handle once the filter is configured.
+	 * The enqueue_styles call registers the stylesheet handle once the filter is configured.
 	 */
 	public function test_enqueue_styles_registers_handle_when_configured() {
 		$this->configure();
