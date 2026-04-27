@@ -29,7 +29,7 @@ if ( function_exists( 'add_action' ) ) {
 							// Update on every release. Used as the asset cache-buster for
 							// enqueued styles/scripts. There is currently no `version` field
 							// in this module's composer.json, so this is the de-facto source.
-							define( 'NFD_SSO_VERSION', '1.2.1' );
+							define( 'NFD_SSO_VERSION', '1.3.0' );
 						}
 
 						require __DIR__ . '/sso.php';
