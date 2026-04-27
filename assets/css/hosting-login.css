@@ -1,0 +1,109 @@
+/*
+ * Hosting login button rendered on wp-login.php by SSO_Hosting_Login.
+ *
+ * The button is themed at runtime via the `--nfd-sso-hosting-login-accent`
+ * custom property, which is set inline on the wrapper from the configured
+ * `accent_color`.
+ */
+
+/* Flex on #loginform lets us reorder our wrapper below the submit row
+ * without moving DOM nodes — every other element keeps its default order: 0. */
+#loginform {
+	display: flex;
+	flex-direction: column;
+}
+
+.nfd-sso-hosting-login {
+	order: 99;
+	margin: 12px 0 0;
+}
+
+.nfd-sso-hosting-login *,
+.nfd-sso-hosting-login *::before,
+.nfd-sso-hosting-login *::after {
+	box-sizing: border-box;
+}
+
+.nfd-sso-hosting-login__divider {
+	margin-bottom: 16px;
+	position: relative;
+	text-align: center;
+}
+
+.nfd-sso-hosting-login__divider::before {
+	background: #dcdcde;
+	content: "";
+	height: 1px;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+}
+
+.nfd-sso-hosting-login__divider span {
+	background: #fff;
+	color: #777;
+	position: relative;
+	padding: 0 8px;
+	text-transform: uppercase;
+}
+
+.nfd-sso-hosting-login__button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	width: 100%;
+	min-height: 48px;
+	padding: 12px 20px;
+	background: var(--nfd-sso-hosting-login-accent, #2271b1);
+	color: #fff;
+	border: 1px solid var(--nfd-sso-hosting-login-accent, #2271b1);
+	border-radius: 4px;
+	text-decoration: none;
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 0.01em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	cursor: pointer;
+	transition: background-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.nfd-sso-hosting-login__button:hover {
+	color: #fff;
+	background: color-mix(in srgb, var(--nfd-sso-hosting-login-accent, #2271b1) 90%, #000);
+	border-color: color-mix(in srgb, var(--nfd-sso-hosting-login-accent, #2271b1) 90%, #000);
+}
+
+.nfd-sso-hosting-login__button:focus,
+.nfd-sso-hosting-login__button:focus-visible {
+	color: #fff;
+	outline: none;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--nfd-sso-hosting-login-accent, #2271b1);
+}
+
+.nfd-sso-hosting-login__button:active {
+	transform: translateY(1px);
+}
+
+.nfd-sso-hosting-login__icon {
+	display: inline-flex;
+	flex: 0 0 auto;
+	width: 16px;
+	height: 16px;
+	color: #fff;
+}
+
+.nfd-sso-hosting-login__icon svg {
+	width: 100%;
+	height: 100%;
+	fill: currentColor;
+	display: block;
+}
+
+.nfd-sso-hosting-login__label {
+	display: inline-block;
+}

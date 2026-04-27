@@ -1,9 +1,11 @@
 <?php
 
 use NewfoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
+use NewfoldLabs\WP\Module\SSO\SSO_Hosting_Login;
 use NewfoldLabs\WP\Module\SSO\SSO_REST_Controller;
 
 new SSO_AJAX_Handler();
+new SSO_Hosting_Login();
 
 add_action(
 	'rest_api_init',
@@ -15,7 +17,7 @@ add_action(
 
 add_action(
 	'cli_init',
-	function() {
+	function () {
 		WP_CLI::add_command(
 			'newfold sso',
 			'NewfoldLabs\WP\Module\SSO\SSO_CLI',
@@ -28,13 +30,14 @@ add_action(
 	}
 );
 
-\add_action( 'init',
-	function() {
+\add_action(
+	'init',
+	function () {
 		\load_plugin_textdomain(
 			'wp-module-sso',
 			false,
 			NFD_SSO_DIR . '/languages'
 		);
-	}, 
-	100 
+	},
+	100
 );
