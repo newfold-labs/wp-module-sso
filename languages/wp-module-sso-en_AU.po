@@ -8,7 +8,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2025-02-13T10:59:28+00:00\n"
-"PO-Revision-Date: 2025-02-13 19:38+0530\n"
+"PO-Revision-Date: 2026-04-27T07:21:16+00:00\n"
 "Language: en_AU\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-module-sso\n"
@@ -17,10 +17,6 @@ msgstr ""
 #: bootstrap.php:19
 msgid "SSO"
 msgstr "SSO"
-
-#: includes/SSO_REST_Controller.php:69
-msgid "Sorry, you are not allowed to access this endpoint."
-msgstr "Sorry, you are not allowed to access this endpoint."
 
 #. Translators: %d number
 #: includes/SSO_CLI.php:75
@@ -39,3 +35,11 @@ msgstr "Error: "
 #: includes/SSO_CLI.php:278
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "Provided $data wasn't valid array or JSON string."
+
+#: includes/SSO_REST_Controller.php:69
+msgid "Sorry, you are not allowed to access this endpoint."
+msgstr "Sorry, you are not allowed to access this endpoint."
+
+#: includes/views/hosting-login.php:16
+msgid "or"
+msgstr "or"

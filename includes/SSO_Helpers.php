@@ -1,6 +1,6 @@
 <?php
 
-namespace NewFoldLabs\WP\Module\SSO;
+namespace NewfoldLabs\WP\Module\SSO;
 
 class SSO_Helpers {
 
