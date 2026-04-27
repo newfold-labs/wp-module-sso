@@ -3,7 +3,7 @@ return [
 	'domain' => 'wp-module-sso',
 	'plural-forms' => 'nplurals=2; plural=(n != 1);',
 	'language' => 'en_GB',
-	'project-id-version' => 'wp-module-sso 1.3.0',
+	'project-id-version' => '',
 	'pot-creation-date' => '2025-02-13T10:59:28+00:00',
 	'po-revision-date' => '2026-04-27T07:21:16+00:00',
 	'x-generator' => 'WP-CLI 2.11.0',
