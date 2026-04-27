@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1777273430">
-  <project timestamp="1777273430">
+<coverage generated="1777273908">
+  <project timestamp="1777273908">
     <file name="/home/runner/work/wp-module-sso/wp-module-sso/bootstrap.php">
       <line num="7" type="stmt" count="0"/>
       <line num="8" type="stmt" count="0"/>
@@ -14,15 +14,19 @@
       <line num="20" type="stmt" count="0"/>
       <line num="22" type="stmt" count="0"/>
       <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
       <line num="26" type="stmt" count="0"/>
-      <line num="27" type="stmt" count="0"/>
       <line num="28" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <metrics loc="37" ncloc="35" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="20" coveredelements="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <metrics loc="45" ncloc="40" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="0" elements="24" coveredelements="0"/>
     </file>
     <file name="/home/runner/work/wp-module-sso/wp-module-sso/includes/SSO_AJAX_Handler.php">
       <class name="NewfoldLabs\WP\Module\SSO\SSO_AJAX_Handler" namespace="global">
@@ -313,6 +317,103 @@
       <line num="91" type="stmt" count="0"/>
       <metrics loc="94" ncloc="75" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="39" coveredstatements="0" elements="41" coveredelements="0"/>
     </file>
+    <file name="/home/runner/work/wp-module-sso/wp-module-sso/includes/SSO_Hosting_Login.php">
+      <class name="NewfoldLabs\WP\Module\SSO\SSO_Hosting_Login" namespace="global">
+        <metrics complexity="12" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="86" coveredstatements="86" elements="91" coveredelements="91"/>
+      </class>
+      <line num="35" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="36" type="stmt" count="18"/>
+      <line num="41" type="stmt" count="18"/>
+      <line num="49" type="method" name="get_config" visibility="protected" complexity="4" crap="4" count="15"/>
+      <line num="50" type="stmt" count="15"/>
+      <line num="51" type="stmt" count="15"/>
+      <line num="52" type="stmt" count="15"/>
+      <line num="53" type="stmt" count="15"/>
+      <line num="54" type="stmt" count="15"/>
+      <line num="55" type="stmt" count="15"/>
+      <line num="56" type="stmt" count="15"/>
+      <line num="57" type="stmt" count="15"/>
+      <line num="59" type="stmt" count="15"/>
+      <line num="60" type="stmt" count="15"/>
+      <line num="62" type="stmt" count="15"/>
+      <line num="63" type="stmt" count="5"/>
+      <line num="66" type="stmt" count="10"/>
+      <line num="73" type="method" name="enqueue_styles" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="74" type="stmt" count="2"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="90" type="method" name="render" visibility="public" complexity="3" crap="3" count="13"/>
+      <line num="91" type="stmt" count="13"/>
+      <line num="92" type="stmt" count="13"/>
+      <line num="93" type="stmt" count="4"/>
+      <line num="96" type="stmt" count="9"/>
+      <line num="97" type="stmt" count="2"/>
+      <line num="98" type="stmt" count="2"/>
+      <line num="99" type="stmt" count="2"/>
+      <line num="100" type="stmt" count="2"/>
+      <line num="101" type="stmt" count="9"/>
+      <line num="103" type="stmt" count="9"/>
+      <line num="113" type="method" name="allowed_svg_tags" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="114" type="stmt" count="2"/>
+      <line num="115" type="stmt" count="2"/>
+      <line num="116" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="2"/>
+      <line num="118" type="stmt" count="2"/>
+      <line num="119" type="stmt" count="2"/>
+      <line num="120" type="stmt" count="2"/>
+      <line num="121" type="stmt" count="2"/>
+      <line num="122" type="stmt" count="2"/>
+      <line num="123" type="stmt" count="2"/>
+      <line num="124" type="stmt" count="2"/>
+      <line num="125" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="127" type="stmt" count="2"/>
+      <line num="128" type="stmt" count="2"/>
+      <line num="129" type="stmt" count="2"/>
+      <line num="130" type="stmt" count="2"/>
+      <line num="131" type="stmt" count="2"/>
+      <line num="132" type="stmt" count="2"/>
+      <line num="133" type="stmt" count="2"/>
+      <line num="134" type="stmt" count="2"/>
+      <line num="135" type="stmt" count="2"/>
+      <line num="136" type="stmt" count="2"/>
+      <line num="137" type="stmt" count="2"/>
+      <line num="138" type="stmt" count="2"/>
+      <line num="139" type="stmt" count="2"/>
+      <line num="140" type="stmt" count="2"/>
+      <line num="141" type="stmt" count="2"/>
+      <line num="142" type="stmt" count="2"/>
+      <line num="143" type="stmt" count="2"/>
+      <line num="144" type="stmt" count="2"/>
+      <line num="145" type="stmt" count="2"/>
+      <line num="146" type="stmt" count="2"/>
+      <line num="147" type="stmt" count="2"/>
+      <line num="148" type="stmt" count="2"/>
+      <line num="149" type="stmt" count="2"/>
+      <line num="150" type="stmt" count="2"/>
+      <line num="151" type="stmt" count="2"/>
+      <line num="152" type="stmt" count="2"/>
+      <line num="153" type="stmt" count="2"/>
+      <line num="154" type="stmt" count="2"/>
+      <line num="155" type="stmt" count="2"/>
+      <line num="156" type="stmt" count="2"/>
+      <line num="157" type="stmt" count="2"/>
+      <line num="158" type="stmt" count="2"/>
+      <line num="159" type="stmt" count="2"/>
+      <line num="160" type="stmt" count="2"/>
+      <line num="161" type="stmt" count="2"/>
+      <line num="162" type="stmt" count="2"/>
+      <line num="163" type="stmt" count="2"/>
+      <line num="164" type="stmt" count="2"/>
+      <line num="165" type="stmt" count="2"/>
+      <line num="166" type="stmt" count="2"/>
+      <metrics loc="169" ncloc="120" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="86" coveredstatements="86" elements="91" coveredelements="91"/>
+    </file>
     <file name="/home/runner/work/wp-module-sso/wp-module-sso/includes/SSO_REST_Controller.php">
       <class name="NewfoldLabs\WP\Module\SSO\SSO_REST_Controller" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="14" elements="26" coveredelements="16"/>
@@ -345,16 +446,22 @@
       <line num="72" type="stmt" count="1"/>
       <metrics loc="76" ncloc="52" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="14" elements="26" coveredelements="16"/>
     </file>
+    <file name="/home/runner/work/wp-module-sso/wp-module-sso/includes/views/hosting-login.php">
+      <line num="14" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <metrics loc="23" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="5" coveredelements="0"/>
+    </file>
     <file name="/home/runner/work/wp-module-sso/wp-module-sso/sso.php">
-      <line num="8" type="stmt" count="0"/>
-      <line num="9" type="stmt" count="0"/>
       <line num="10" type="stmt" count="0"/>
       <line num="11" type="stmt" count="0"/>
       <line num="12" type="stmt" count="0"/>
       <line num="13" type="stmt" count="0"/>
       <line num="14" type="stmt" count="0"/>
+      <line num="15" type="stmt" count="0"/>
       <line num="16" type="stmt" count="0"/>
-      <line num="17" type="stmt" count="0"/>
       <line num="18" type="stmt" count="0"/>
       <line num="19" type="stmt" count="0"/>
       <line num="20" type="stmt" count="0"/>
@@ -367,8 +474,8 @@
       <line num="27" type="stmt" count="0"/>
       <line num="28" type="stmt" count="0"/>
       <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
       <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
       <line num="33" type="stmt" count="0"/>
       <line num="34" type="stmt" count="0"/>
       <line num="35" type="stmt" count="0"/>
@@ -377,8 +484,11 @@
       <line num="38" type="stmt" count="0"/>
       <line num="39" type="stmt" count="0"/>
       <line num="40" type="stmt" count="0"/>
-      <metrics loc="41" ncloc="41" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="0" elements="31" coveredelements="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <metrics loc="44" ncloc="44" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="32" coveredelements="0"/>
     </file>
-    <metrics files="7" loc="861" ncloc="618" classes="5" methods="32" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="311" coveredstatements="50" elements="343" coveredelements="57"/>
+    <metrics files="9" loc="1064" ncloc="759" classes="6" methods="37" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="407" coveredstatements="136" elements="444" coveredelements="148"/>
   </project>
 </coverage>
