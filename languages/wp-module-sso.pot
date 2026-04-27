@@ -37,3 +37,7 @@ msgstr ""
 #: includes/SSO_REST_Controller.php:69
 msgid "Sorry, you are not allowed to access this endpoint."
 msgstr ""
+
+#: includes/views/hosting-login.php:16
+msgid "or"
+msgstr ""
