@@ -23,6 +23,7 @@ jobs:
     permissions:
       contents: write      # Required for reusable-translations to push the auto-translate branch and catalogs to the caller repository.
       pull-requests: write # Required for reusable workflows that manage translation pull requests (`gh`, PR comments, or merges).
+    timeout-minutes: 120
     with:
       text_domain: 'wp-module-sso'
     secrets:

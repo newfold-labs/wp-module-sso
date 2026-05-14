@@ -25,6 +25,7 @@ jobs:
     permissions:
       contents: write      # Required for reusable-module-prep-release to push the prepared release branch to the caller repository.
       pull-requests: write # Required for reusable-module-prep-release to open the draft release pull request (`gh pr create`).
+    timeout-minutes: 30
     with:
       module-repo: ${{ github.repository }}
       module-branch: 'main'

@@ -21,6 +21,7 @@ jobs:
   get-repo-name:
     runs-on: ubuntu-latest
     permissions: {} # Computes repository name only (no checkout or GitHub API).
+    timeout-minutes: 5
     outputs:
       repository-name: ${{ steps.repo-name.outputs.name }}
     steps:
@@ -34,6 +35,7 @@ jobs:
     permissions:
       contents: write      # Required so reusable-codecoverage can clone the caller repo (private) and push coverage to gh-pages.
       pull-requests: write # Required so reusable-codecoverage can add or update coverage comments on PRs via mshick/add-pr-comment.
+    timeout-minutes: 60
     with:
       php-versions: '["7.4", "8.0", "8.1", "8.2", "8.3", "8.4"]'
       coverage-php-version: '7.4'
