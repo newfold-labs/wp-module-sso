@@ -2,6 +2,9 @@
 
 namespace NewfoldLabs\WP\Module\SSO;
 
+/**
+ * Legacy SSO login handler.
+ */
 class SSO_Helpers_Legacy extends SSO_Helpers {
 
 	/**
@@ -12,7 +15,8 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 	/**
 	 * Handle SSO login.
 	 *
-	 * @param string $token
+	 * @param string $nonce SSO nonce from the request.
+	 * @param string $salt  SSO salt from the request.
 	 */
 	public static function handleLegacyLogin( $nonce, $salt ) {
 
@@ -56,6 +60,13 @@ class SSO_Helpers_Legacy extends SSO_Helpers {
 			self::triggerFailure();
 			exit;
 		}
+
+		// Consume the token so a single-use legacy SSO link cannot be replayed.
+		// Mirrors SSO_Helpers::handleLogin(), which deletes its user-meta token on
+		// success. The token can live in either store (see the dual read above), so
+		// clear both.
+		delete_transient( 'sso_token' );
+		delete_option( 'sso_token' );
 
 		// Do login
 		self::triggerSuccess( $user );
