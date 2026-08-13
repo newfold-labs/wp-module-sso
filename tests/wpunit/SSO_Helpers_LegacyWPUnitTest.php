@@ -16,6 +16,13 @@ class SSO_Helpers_LegacyWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 	const REDIRECT_SIGNAL = 'sso-legacy-redirect';
 
 	/**
+	 * The wp_redirect interceptor, kept so it can be removed in tearDown.
+	 *
+	 * @var callable
+	 */
+	private $redirect_filter;
+
+	/**
 	 * Set up: turn the redirect+exit at the end of triggerSuccess/triggerFailure
 	 * into a catchable exception, and avoid sending real auth cookies in CLI.
 	 *
@@ -24,14 +31,13 @@ class SSO_Helpers_LegacyWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 	public function setUp(): void {
 		parent::setUp();
 
+		$this->redirect_filter = static function () {
+			// A fixed control-flow marker, not request output.
+			throw new \RuntimeException( self::REDIRECT_SIGNAL ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+		};
+
 		add_filter( 'send_auth_cookies', '__return_false' );
-		add_filter(
-			'wp_redirect',
-			static function () {
-				// A fixed control-flow marker, not request output.
-				throw new \RuntimeException( self::REDIRECT_SIGNAL ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
-			}
-		);
+		add_filter( 'wp_redirect', $this->redirect_filter );
 
 		delete_transient( 'sso_token' );
 		delete_option( 'sso_token' );
@@ -39,11 +45,14 @@ class SSO_Helpers_LegacyWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 	}
 
 	/**
-	 * Tear down: clear the token stores and throttle counter.
+	 * Tear down: remove the filters this test added and clear token stores.
 	 *
 	 * @return void
 	 */
 	public function tearDown(): void {
+		remove_filter( 'send_auth_cookies', '__return_false' );
+		remove_filter( 'wp_redirect', $this->redirect_filter );
+
 		delete_transient( 'sso_token' );
 		delete_option( 'sso_token' );
 		delete_transient( 'newfold_sso_failure_count' );
@@ -122,6 +131,46 @@ class SSO_Helpers_LegacyWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCa
 			0,
 			absint( get_transient( 'newfold_sso_failure_count' ) ),
 			'Replaying a consumed legacy link must be treated as a failed attempt.'
+		);
+	}
+
+	/**
+	 * A token stored in the option (transient empty) is also consumed on success,
+	 * exercising the dual-read / dual-delete path.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_login_consumes_token_from_option_store() {
+		$nonce = 'valid-nonce';
+		$salt  = 'valid-salt';
+		delete_transient( 'sso_token' );
+		update_option( 'sso_token', $this->make_token( $nonce, $salt ) );
+
+		$this->run_legacy_login( $nonce, $salt );
+
+		$this->assertFalse( get_option( 'sso_token' ), 'The option-store token must be deleted on success.' );
+		$this->assertFalse( get_transient( 'sso_token' ), 'No token transient should remain.' );
+	}
+
+	/**
+	 * A failed attempt (wrong nonce/salt) must NOT consume the stored token, so a
+	 * later attempt with the correct link still works.
+	 *
+	 * @return void
+	 */
+	public function test_failed_legacy_login_does_not_consume_token() {
+		$nonce = 'valid-nonce';
+		$salt  = 'valid-salt';
+		$token = $this->make_token( $nonce, $salt );
+		set_transient( 'sso_token', $token );
+
+		// Wrong salt => computed token will not match the stored one => failure.
+		$this->run_legacy_login( $nonce, 'wrong-salt' );
+
+		$this->assertSame(
+			$token,
+			get_transient( 'sso_token' ),
+			'A failed legacy login must leave the stored token intact.'
 		);
 	}
 }
