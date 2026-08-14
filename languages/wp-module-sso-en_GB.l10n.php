@@ -5,7 +5,7 @@ return [
 	'language' => 'en_GB',
 	'project-id-version' => '',
 	'pot-creation-date' => '2025-02-13T10:59:28+00:00',
-	'po-revision-date' => '2026-04-27T07:21:16+00:00',
+	'po-revision-date' => '2026-08-14T07:19:14+00:00',
 	'x-generator' => 'WP-CLI 2.11.0',
 	'messages' => [
 		'SSO' => 'SSO',
@@ -15,5 +15,7 @@ return [
 		'Provided $data wasn\'t valid array or JSON string.' => 'Provided $data wasn\'t valid array or JSON string.',
 		'Sorry, you are not allowed to access this endpoint.' => 'Sorry, you are not allowed to access this endpoint.',
 		'or' => 'or',
+		'SSO failed: username cannot contain invalid characters.' => 'SSO failed: username cannot contain invalid characters.',
+		'An unknown error occurred. Please try again.' => 'An unknown error occurred. Please try again.',
 	],
 ];

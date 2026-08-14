@@ -12,8 +12,18 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wp-module-sso\n"
 
-#: sso.php:56
-msgid "An unknown error occurred. Please try again."
+#: bootstrap.php:19
+msgid "SSO"
+msgstr ""
+
+#. Translators: %d number
+#: includes/SSO_CLI.php:75
+#, php-format
+msgid "Single-use login link valid for %d minutes"
+msgstr ""
+
+#: includes/SSO_CLI.php:196
+msgid "Success: "
 msgstr ""
 
 #: includes/SSO_CLI.php:229
@@ -24,28 +34,18 @@ msgstr ""
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr ""
 
-#: bootstrap.php:19
-msgid "SSO"
+#: includes/SSO_REST_Controller.php:69
+msgid "Sorry, you are not allowed to access this endpoint."
+msgstr ""
+
+#: includes/views/hosting-login.php:16
+msgid "or"
 msgstr ""
 
 #: sso.php:53
 msgid "SSO failed: username cannot contain invalid characters."
 msgstr ""
 
-#. Translators: %d number
-#: includes/SSO_CLI.php:75
-#, php-format
-msgid "Single-use login link valid for %d minutes"
-msgstr ""
-
-#: includes/SSO_REST_Controller.php:69
-msgid "Sorry, you are not allowed to access this endpoint."
-msgstr ""
-
-#: includes/SSO_CLI.php:196
-msgid "Success: "
-msgstr ""
-
-#: includes/views/hosting-login.php:16
-msgid "or"
+#: sso.php:56
+msgid "An unknown error occurred. Please try again."
 msgstr ""
