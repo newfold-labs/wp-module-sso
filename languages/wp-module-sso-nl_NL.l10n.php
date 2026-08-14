@@ -5,7 +5,7 @@ return [
 	'language' => 'nl_NL',
 	'project-id-version' => '',
 	'pot-creation-date' => '2025-02-13T09:55:55+00:00',
-	'po-revision-date' => '2026-04-27T07:21:16+00:00',
+	'po-revision-date' => '2026-08-14T07:19:14+00:00',
 	'x-generator' => 'WP-CLI 2.11.0',
 	'messages' => [
 		'SSO' => 'ZSO',
@@ -15,5 +15,7 @@ return [
 		'Provided $data wasn\'t valid array or JSON string.' => 'De opgegeven $data was geen geldige array of JSON-tekenreeks.',
 		'Sorry, you are not allowed to access this endpoint.' => 'Sorry, je hebt geen toegang tot dit eindpunt.',
 		'or' => 'of',
+		'SSO failed: username cannot contain invalid characters.' => 'SSO mislukt: gebruikersnaam kan geen ongeldige tekens bevatten.',
+		'An unknown error occurred. Please try again.' => 'Er deed zich een onbekende fout voor. Probeer het alsjeblieft opnieuw.',
 	],
 ];
