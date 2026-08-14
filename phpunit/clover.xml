@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1786606234">
-  <project timestamp="1786606234">
+<coverage generated="1786701917">
+  <project timestamp="1786701917">
     <file name="/home/runner/work/wp-module-sso/wp-module-sso/bootstrap.php">
       <line num="7" type="stmt" count="0"/>
       <line num="8" type="stmt" count="0"/>
