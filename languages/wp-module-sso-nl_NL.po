@@ -1,16 +1,15 @@
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/newfold-labs/wp-module-sso/issues\n"
-"POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
-"PO-Revision-Date: 2026-05-15T13:22:16+00:00\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
-"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-02-13T09:55:55+00:00\n"
+"PO-Revision-Date: 2026-08-14T07:19:14+00:00\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-File: wp-module-sso.pot\n"
 "X-Crowdin-File-ID: 22\n"
@@ -20,9 +19,19 @@ msgstr ""
 "X-Domain: wp-module-sso\n"
 "X-Generator: WP-CLI 2.11.0\n"
 
-#: sso.php:56
-msgid "An unknown error occurred. Please try again."
-msgstr "Er deed zich een onbekende fout voor. Probeer het alsjeblieft opnieuw."
+#: bootstrap.php:19
+msgid "SSO"
+msgstr "ZSO"
+
+#. Translators: %d number
+#: includes/SSO_CLI.php:75
+#, php-format
+msgid "Single-use login link valid for %d minutes"
+msgstr "Eenmalige inloglink geldig voor %d minuten"
+
+#: includes/SSO_CLI.php:196
+msgid "Success: "
+msgstr "Succes: "
 
 #: includes/SSO_CLI.php:229
 msgid "Error: "
@@ -32,28 +41,18 @@ msgstr "Fout: "
 msgid "Provided $data wasn't valid array or JSON string."
 msgstr "De opgegeven $data was geen geldige array of JSON-tekenreeks."
 
-#: bootstrap.php:19
-msgid "SSO"
-msgstr "ZSO"
+#: includes/SSO_REST_Controller.php:69
+msgid "Sorry, you are not allowed to access this endpoint."
+msgstr "Sorry, je hebt geen toegang tot dit eindpunt."
+
+#: includes/views/hosting-login.php:16
+msgid "or"
+msgstr "of"
 
 #: sso.php:53
 msgid "SSO failed: username cannot contain invalid characters."
 msgstr "SSO mislukt: gebruikersnaam kan geen ongeldige tekens bevatten."
 
-#. Translators: %d number
-#: includes/SSO_CLI.php:75
-#, php-format
-msgid "Single-use login link valid for %d minutes"
-msgstr "Eenmalige inloglink geldig voor %d minuten"
-
-#: includes/SSO_REST_Controller.php:69
-msgid "Sorry, you are not allowed to access this endpoint."
-msgstr "Sorry, je hebt geen toegang tot dit eindpunt."
-
-#: includes/SSO_CLI.php:196
-msgid "Success: "
-msgstr "Succes: "
-
-#: includes/views/hosting-login.php:16
-msgid "or"
-msgstr "of"
+#: sso.php:56
+msgid "An unknown error occurred. Please try again."
+msgstr "Er deed zich een onbekende fout voor. Probeer het alsjeblieft opnieuw."
