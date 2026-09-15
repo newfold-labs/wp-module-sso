@@ -102,4 +102,56 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$url  = SSO_Helpers::getSuccessUrl();
 		$this->assertSame( admin_url(), $url );
 	}
+
+	/**
+	 * Verifies guardPendingRedirect is a no-op when no user is logged in,
+	 * even if a pending redirect transient exists.
+	 *
+	 * @return void
+	 */
+	public function test_guard_pending_redirect_noop_when_logged_out() {
+		wp_set_current_user( 0 );
+		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, 'http://example.test/target', 30 );
+
+		SSO_Helpers::guardPendingRedirect();
+
+		$this->assertSame( 'http://example.test/other', apply_filters( 'wp_redirect', 'http://example.test/other' ) );
+
+		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
+	}
+
+	/**
+	 * Verifies guardPendingRedirect is a no-op when there is no pending
+	 * redirect transient for the current user.
+	 *
+	 * @return void
+	 */
+	public function test_guard_pending_redirect_noop_when_no_transient() {
+		wp_set_current_user( $this->user_id );
+		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
+
+		SSO_Helpers::guardPendingRedirect();
+
+		$this->assertSame( 'http://example.test/other', apply_filters( 'wp_redirect', 'http://example.test/other' ) );
+	}
+
+	/**
+	 * Verifies guardPendingRedirect pins wp_redirect() calls to the stored
+	 * target - simulating a plugin's admin_init onboarding redirect trying
+	 * to hijack the page an SSO login just landed on - and consumes the
+	 * transient so it only protects a single request.
+	 *
+	 * @return void
+	 */
+	public function test_guard_pending_redirect_pins_redirect_and_is_single_use() {
+		wp_set_current_user( $this->user_id );
+		$target = admin_url( 'admin.php?page=intended-destination' );
+		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, 30 );
+
+		SSO_Helpers::guardPendingRedirect();
+
+		$hijacked = admin_url( 'admin.php?page=some-onboarding-wizard' );
+		$this->assertSame( $target, apply_filters( 'wp_redirect', $hijacked ) );
+		$this->assertFalse( get_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id ) );
+	}
 }
