@@ -1,11 +1,18 @@
 <?php
 
 use NewfoldLabs\WP\Module\SSO\SSO_AJAX_Handler;
+use NewfoldLabs\WP\Module\SSO\SSO_Helpers;
 use NewfoldLabs\WP\Module\SSO\SSO_Hosting_Login;
 use NewfoldLabs\WP\Module\SSO\SSO_REST_Controller;
 
 new SSO_AJAX_Handler();
 new SSO_Hosting_Login();
+
+// Protect the page an SSO login redirects to from being hijacked by
+// another plugin's `admin_init` redirect (e.g. a first-run onboarding
+// wizard). Runs as early as possible so it wins the race against other
+// `admin_init` callbacks.
+add_action( 'admin_init', array( SSO_Helpers::class, 'guardPendingRedirect' ), PHP_INT_MIN );
 
 add_action(
 	'rest_api_init',

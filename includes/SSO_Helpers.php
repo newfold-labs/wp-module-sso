@@ -15,6 +15,14 @@ class SSO_Helpers {
 	const META_KEY = 'newfold_sso_token';
 
 	/**
+	 * Transient key prefix used to protect the SSO landing redirect from
+	 * being hijacked by a plugin that fires its own redirect on `admin_init`
+	 * (e.g. a first-run onboarding wizard) on the request the SSO redirect
+	 * lands on.
+	 */
+	const REDIRECT_GUARD_KEY = 'newfold_sso_pending_redirect_';
+
+	/**
 	 * Generate an SSO token for a user.
 	 *
 	 * @param int $user_id user id
@@ -164,9 +172,23 @@ class SSO_Helpers {
 
 		wp_set_current_user( $user->ID, $user->user_login );
 		wp_set_auth_cookie( $user->ID );
-		do_action( 'wp_login', $user->user_login, $user );
 
 		$redirect = self::getSuccessUrl();
+
+		// Pin the redirect target for the rest of this request so that
+		// anything hooked to `wp_login` below (e.g. a plugin's own
+		// first-time onboarding redirect) can't hijack the destination the
+		// user actually asked for.
+		self::pinRedirect( $redirect );
+
+		// Protect the next request too. `wp_login` only guards redirects
+		// fired during *this* request, but the destination above is a fresh
+		// page load in its own request, and some onboarding-style redirects
+		// fire on that page's `admin_init` instead - see
+		// self::guardPendingRedirect(), hooked to `admin_init` in sso.php.
+		set_transient( self::REDIRECT_GUARD_KEY . $user->ID, $redirect, 30 );
+
+		do_action( 'wp_login', $user->user_login, $user );
 
 		// Enable legacy action when necessary
 		if ( has_action( 'eig_sso_success' ) ) {
@@ -180,6 +202,50 @@ class SSO_Helpers {
 
 		wp_safe_redirect( $redirect );
 		exit;
+	}
+
+	/**
+	 * Force any `wp_redirect()`/`wp_safe_redirect()` call made for the rest
+	 * of this request to resolve to $url, regardless of what it's called
+	 * with. Registered at PHP_INT_MAX so it always runs after filters added
+	 * earlier in the request (WordPress runs same-priority callbacks in
+	 * registration order).
+	 *
+	 * @param string $url
+	 */
+	protected static function pinRedirect( $url ) {
+		add_filter(
+			'wp_redirect',
+			function () use ( $url ) {
+				return $url;
+			},
+			PHP_INT_MAX
+		);
+	}
+
+	/**
+	 * Guard against a first-run/onboarding redirect hijacking the page an
+	 * SSO login just landed the user on. Hooked to `admin_init` at an early
+	 * priority (see sso.php) so it registers its redirect pin before other
+	 * `admin_init` callbacks get a chance to redirect away.
+	 */
+	public static function guardPendingRedirect() {
+		$user_id = get_current_user_id();
+		if ( ! $user_id ) {
+			return;
+		}
+
+		$key      = self::REDIRECT_GUARD_KEY . $user_id;
+		$redirect = get_transient( $key );
+		if ( ! $redirect ) {
+			return;
+		}
+
+		// Single-use: only the request the SSO redirect actually lands on
+		// is protected.
+		delete_transient( $key );
+
+		self::pinRedirect( $redirect );
 	}
 
 	/**
