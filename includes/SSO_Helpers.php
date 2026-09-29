@@ -23,6 +23,33 @@ class SSO_Helpers {
 	const REDIRECT_GUARD_KEY = 'newfold_sso_pending_redirect_';
 
 	/**
+	 * Default lifetime (seconds) for the landing-page redirect guard.
+	 */
+	const REDIRECT_GUARD_TTL = 120;
+
+	/**
+	 * Currently registered `wp_redirect` pin callback, kept so it can be
+	 * removed (tests and re-pinning in the same request).
+	 *
+	 * @var callable|null
+	 */
+	protected static $redirect_pin_callback = null;
+
+	/**
+	 * Transient key for the in-flight landing guard, if any.
+	 *
+	 * @var string|null
+	 */
+	protected static $redirect_guard_key = null;
+
+	/**
+	 * Whether a competing `wp_redirect` target was observed while pinned.
+	 *
+	 * @var bool
+	 */
+	protected static $redirect_guard_hijacked = false;
+
+	/**
 	 * Generate an SSO token for a user.
 	 *
 	 * @param int $user_id user id
@@ -173,7 +200,7 @@ class SSO_Helpers {
 		wp_set_current_user( $user->ID, $user->user_login );
 		wp_set_auth_cookie( $user->ID );
 
-		$redirect = self::getSuccessUrl();
+		$redirect = wp_validate_redirect( self::getSuccessUrl(), admin_url() );
 
 		// Pin the redirect target for the rest of this request so that
 		// anything hooked to `wp_login` below (e.g. a plugin's own
@@ -186,7 +213,11 @@ class SSO_Helpers {
 		// page load in its own request, and some onboarding-style redirects
 		// fire on that page's `admin_init` instead - see
 		// self::guardPendingRedirect(), hooked to `admin_init` in sso.php.
-		set_transient( self::REDIRECT_GUARD_KEY . $user->ID, $redirect, 30 );
+		set_transient(
+			self::REDIRECT_GUARD_KEY . $user->ID,
+			$redirect,
+			self::getRedirectGuardTtl()
+		);
 
 		do_action( 'wp_login', $user->user_login, $user );
 
@@ -205,22 +236,77 @@ class SSO_Helpers {
 	}
 
 	/**
+	 * TTL for the landing-page redirect-guard transient.
+	 *
+	 * @return int
+	 */
+	protected static function getRedirectGuardTtl() {
+		return max( 30, (int) apply_filters( 'newfold_sso_redirect_guard_ttl', self::REDIRECT_GUARD_TTL ) );
+	}
+
+	/**
 	 * Force any `wp_redirect()`/`wp_safe_redirect()` call made for the rest
 	 * of this request to resolve to $url, regardless of what it's called
 	 * with. Registered at PHP_INT_MAX so it always runs after filters added
 	 * earlier in the request (WordPress runs same-priority callbacks in
 	 * registration order).
 	 *
-	 * @param string $url
+	 * The callback accepts the `$location` argument WordPress passes to
+	 * `wp_redirect` filters so PHP 7.3+ does not warn about extra args.
+	 *
+	 * @param string $url Intended destination (already validated).
+	 *
+	 * @return void
 	 */
 	protected static function pinRedirect( $url ) {
-		add_filter(
-			'wp_redirect',
-			function () use ( $url ) {
-				return $url;
-			},
-			PHP_INT_MAX
-		);
+		if ( self::$redirect_pin_callback ) {
+			remove_filter( 'wp_redirect', self::$redirect_pin_callback, PHP_INT_MAX );
+			self::$redirect_pin_callback = null;
+		}
+
+		self::$redirect_guard_hijacked = false;
+		self::$redirect_pin_callback   = static function ( $location, $status = 302 ) use ( $url ) {
+			unset( $status );
+			if ( (string) $location !== (string) $url ) {
+				self::$redirect_guard_hijacked = true;
+			}
+
+			return $url;
+		};
+
+		add_filter( 'wp_redirect', self::$redirect_pin_callback, PHP_INT_MAX, 2 );
+	}
+
+	/**
+	 * Remove a previously registered redirect pin.
+	 *
+	 * @return void
+	 */
+	public static function clearRedirectPin() {
+		if ( self::$redirect_pin_callback ) {
+			remove_filter( 'wp_redirect', self::$redirect_pin_callback, PHP_INT_MAX );
+			self::$redirect_pin_callback = null;
+		}
+		remove_action( 'shutdown', array( self::class, 'consumeRedirectGuardIfClean' ), PHP_INT_MAX );
+		self::$redirect_guard_hijacked = false;
+		self::$redirect_guard_key      = null;
+	}
+
+	/**
+	 * Drop the landing-page guard transient when this request was not
+	 * forced through a competing redirect. If a hijack was rewritten back
+	 * to the SSO target, keep the transient so the following request
+	 * (the browser loading that target again) is still protected.
+	 *
+	 * Hooked to `shutdown` from guardPendingRedirect().
+	 *
+	 * @return void
+	 */
+	public static function consumeRedirectGuardIfClean() {
+		if ( self::$redirect_guard_key && ! self::$redirect_guard_hijacked ) {
+			delete_transient( self::$redirect_guard_key );
+			self::$redirect_guard_key = null;
+		}
 	}
 
 	/**
@@ -228,6 +314,13 @@ class SSO_Helpers {
 	 * SSO login just landed the user on. Hooked to `admin_init` at an early
 	 * priority (see sso.php) so it registers its redirect pin before other
 	 * `admin_init` callbacks get a chance to redirect away.
+	 *
+	 * The transient is not deleted up front. Deleting it before remaining
+	 * `admin_init` callbacks run would leave the next hop unprotected: a
+	 * hijack is rewritten to the SSO URL, the browser requests that URL
+	 * again, and the onboarding callback would then succeed.
+	 *
+	 * @return void
 	 */
 	public static function guardPendingRedirect() {
 		$user_id = get_current_user_id();
@@ -241,11 +334,16 @@ class SSO_Helpers {
 			return;
 		}
 
-		// Single-use: only the request the SSO redirect actually lands on
-		// is protected.
-		delete_transient( $key );
+		$redirect = wp_validate_redirect( $redirect, false );
+		if ( ! $redirect ) {
+			delete_transient( $key );
+			return;
+		}
 
+		self::$redirect_guard_key = $key;
 		self::pinRedirect( $redirect );
+
+		add_action( 'shutdown', array( self::class, 'consumeRedirectGuardIfClean' ), PHP_INT_MAX );
 	}
 
 	/**

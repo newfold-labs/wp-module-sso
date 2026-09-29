@@ -17,6 +17,20 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	private $user_id;
 
 	/**
+	 * Optional wp_login callback added by a test, removed in tearDown.
+	 *
+	 * @var callable|null
+	 */
+	private $wp_login_callback;
+
+	/**
+	 * Optional wp_redirect interceptor added by a test, removed in tearDown.
+	 *
+	 * @var callable|null
+	 */
+	private $wp_redirect_callback;
+
+	/**
 	 * Set up test user.
 	 *
 	 * @return void
@@ -24,6 +38,28 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$this->user_id = $this->factory()->user->create( array( 'user_login' => 'sso_test_user' ) );
+		SSO_Helpers::clearRedirectPin();
+		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
+	}
+
+	/**
+	 * Tear down: drop any redirect pin so later tests are not affected.
+	 *
+	 * @return void
+	 */
+	public function tearDown(): void {
+		SSO_Helpers::clearRedirectPin();
+		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
+		if ( $this->wp_login_callback ) {
+			remove_action( 'wp_login', $this->wp_login_callback );
+			$this->wp_login_callback = null;
+		}
+		if ( $this->wp_redirect_callback ) {
+			remove_filter( 'wp_redirect', $this->wp_redirect_callback, PHP_INT_MAX );
+			$this->wp_redirect_callback = null;
+		}
+		remove_filter( 'send_auth_cookies', '__return_false' );
+		parent::tearDown();
 	}
 
 	/**
@@ -138,20 +174,77 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	/**
 	 * Verifies guardPendingRedirect pins wp_redirect() calls to the stored
 	 * target - simulating a plugin's admin_init onboarding redirect trying
-	 * to hijack the page an SSO login just landed on - and consumes the
-	 * transient so it only protects a single request.
+	 * to hijack the page an SSO login just landed on - and keeps the
+	 * transient so a follow-up request (after the Location is rewritten
+	 * back to the SSO URL) is still protected.
 	 *
 	 * @return void
 	 */
-	public function test_guard_pending_redirect_pins_redirect_and_is_single_use() {
+	public function test_guard_pending_redirect_pins_hijack_and_keeps_transient() {
 		wp_set_current_user( $this->user_id );
 		$target = admin_url( 'admin.php?page=intended-destination' );
-		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, 30 );
+		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, SSO_Helpers::REDIRECT_GUARD_TTL );
 
 		SSO_Helpers::guardPendingRedirect();
 
 		$hijacked = admin_url( 'admin.php?page=some-onboarding-wizard' );
 		$this->assertSame( $target, apply_filters( 'wp_redirect', $hijacked ) );
+
+		SSO_Helpers::consumeRedirectGuardIfClean();
+		$this->assertSame(
+			$target,
+			get_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id ),
+			'A rewritten hijack must leave the guard in place for the next hop.'
+		);
+	}
+
+	/**
+	 * Verifies the landing guard is consumed when the request is clean
+	 * (no competing redirect), so later admin navigations are not pinned.
+	 *
+	 * @return void
+	 */
+	public function test_guard_pending_redirect_consumed_when_request_is_clean() {
+		wp_set_current_user( $this->user_id );
+		$target = admin_url( 'admin.php?page=intended-destination' );
+		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, SSO_Helpers::REDIRECT_GUARD_TTL );
+
+		SSO_Helpers::guardPendingRedirect();
+		SSO_Helpers::consumeRedirectGuardIfClean();
+
 		$this->assertFalse( get_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id ) );
+	}
+
+	/**
+	 * Verifies triggerSuccess pins wp_redirect before wp_login fires, so a
+	 * plugin that redirects+exits on wp_login cannot change the destination.
+	 *
+	 * @return void
+	 */
+	public function test_trigger_success_pins_redirect_against_wp_login_hijack() {
+		$user     = get_user_by( 'id', $this->user_id );
+		$expected = admin_url();
+		$wizard   = admin_url( 'admin.php?page=some-onboarding-wizard' );
+
+		add_filter( 'send_auth_cookies', '__return_false' );
+
+		$this->wp_redirect_callback = static function ( $location ) {
+			throw new \RuntimeException( $location ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+		};
+
+		$this->wp_login_callback = function () use ( $wizard ) {
+			add_filter( 'wp_redirect', $this->wp_redirect_callback, PHP_INT_MAX );
+			wp_safe_redirect( $wizard );
+			exit;
+		};
+
+		add_action( 'wp_login', $this->wp_login_callback );
+
+		try {
+			SSO_Helpers::triggerSuccess( $user );
+			$this->fail( 'triggerSuccess should end in a redirect.' );
+		} catch ( \RuntimeException $e ) {
+			$this->assertSame( $expected, $e->getMessage() );
+		}
 	}
 }
