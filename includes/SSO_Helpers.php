@@ -2,6 +2,12 @@
 
 namespace NewfoldLabs\WP\Module\SSO;
 
+// Existing public methods are camelCase. Renaming them would break callers.
+// phpcs:disable WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid
+
+/**
+ * SSO login helpers.
+ */
 class SSO_Helpers {
 
 	/**
@@ -72,7 +78,7 @@ class SSO_Helpers {
 	/**
 	 * Save an SSO token for a specific user.
 	 *
-	 * @param string $token
+	 * @param string $token SSO token.
 	 */
 	public static function saveToken( $token ) {
 		update_user_meta( self::getUserIdFromToken( $token ), self::META_KEY, $token );
@@ -81,7 +87,7 @@ class SSO_Helpers {
 	/**
 	 * Validate an SSO token.
 	 *
-	 * @param $token
+	 * @param string $token SSO token.
 	 *
 	 * @return bool
 	 */
@@ -120,7 +126,7 @@ class SSO_Helpers {
 	/**
 	 * Get the WordPress user ID from a token.
 	 *
-	 * @param string $token
+	 * @param string $token SSO token.
 	 *
 	 * @return int
 	 */
@@ -133,7 +139,7 @@ class SSO_Helpers {
 	/**
 	 * Get the WordPress user object from a token.
 	 *
-	 * @param string $token
+	 * @param string $token SSO token.
 	 *
 	 * @return \WP_User|false
 	 */
@@ -193,7 +199,7 @@ class SSO_Helpers {
 	/**
 	 * Trigger an SSO success
 	 *
-	 * @param \WP_User $user
+	 * @param \WP_User $user Logged-in user.
 	 */
 	public static function triggerSuccess( \WP_User $user ) {
 
@@ -206,17 +212,17 @@ class SSO_Helpers {
 		// anything hooked to `wp_login` below (e.g. a plugin's own
 		// first-time onboarding redirect) can't hijack the destination the
 		// user actually asked for.
-		self::pinRedirect( $redirect );
+		self::pin_redirect( $redirect );
 
 		// Protect the next request too. `wp_login` only guards redirects
 		// fired during *this* request, but the destination above is a fresh
 		// page load in its own request, and some onboarding-style redirects
 		// fire on that page's `admin_init` instead - see
-		// self::guardPendingRedirect(), hooked to `admin_init` in sso.php.
+		// self::guard_pending_redirect(), hooked to `admin_init` in sso.php.
 		set_transient(
 			self::REDIRECT_GUARD_KEY . $user->ID,
 			$redirect,
-			self::getRedirectGuardTtl()
+			self::get_redirect_guard_ttl()
 		);
 
 		do_action( 'wp_login', $user->user_login, $user );
@@ -240,7 +246,7 @@ class SSO_Helpers {
 	 *
 	 * @return int
 	 */
-	protected static function getRedirectGuardTtl() {
+	protected static function get_redirect_guard_ttl() {
 		return max( 30, (int) apply_filters( 'newfold_sso_redirect_guard_ttl', self::REDIRECT_GUARD_TTL ) );
 	}
 
@@ -258,7 +264,7 @@ class SSO_Helpers {
 	 *
 	 * @return void
 	 */
-	protected static function pinRedirect( $url ) {
+	protected static function pin_redirect( $url ) {
 		if ( self::$redirect_pin_callback ) {
 			remove_filter( 'wp_redirect', self::$redirect_pin_callback, PHP_INT_MAX );
 			self::$redirect_pin_callback = null;
@@ -282,12 +288,12 @@ class SSO_Helpers {
 	 *
 	 * @return void
 	 */
-	public static function clearRedirectPin() {
+	public static function clear_redirect_pin() {
 		if ( self::$redirect_pin_callback ) {
 			remove_filter( 'wp_redirect', self::$redirect_pin_callback, PHP_INT_MAX );
 			self::$redirect_pin_callback = null;
 		}
-		remove_action( 'shutdown', array( self::class, 'consumeRedirectGuardIfClean' ), PHP_INT_MAX );
+		remove_action( 'shutdown', array( self::class, 'consume_redirect_guard_if_clean' ), PHP_INT_MAX );
 		self::$redirect_guard_hijacked = false;
 		self::$redirect_guard_key      = null;
 	}
@@ -298,11 +304,11 @@ class SSO_Helpers {
 	 * to the SSO target, keep the transient so the following request
 	 * (the browser loading that target again) is still protected.
 	 *
-	 * Hooked to `shutdown` from guardPendingRedirect().
+	 * Hooked to `shutdown` from guard_pending_redirect().
 	 *
 	 * @return void
 	 */
-	public static function consumeRedirectGuardIfClean() {
+	public static function consume_redirect_guard_if_clean() {
 		if ( self::$redirect_guard_key && ! self::$redirect_guard_hijacked ) {
 			delete_transient( self::$redirect_guard_key );
 			self::$redirect_guard_key = null;
@@ -322,7 +328,7 @@ class SSO_Helpers {
 	 *
 	 * @return void
 	 */
-	public static function guardPendingRedirect() {
+	public static function guard_pending_redirect() {
 		$user_id = get_current_user_id();
 		if ( ! $user_id ) {
 			return;
@@ -341,9 +347,9 @@ class SSO_Helpers {
 		}
 
 		self::$redirect_guard_key = $key;
-		self::pinRedirect( $redirect );
+		self::pin_redirect( $redirect );
 
-		add_action( 'shutdown', array( self::class, 'consumeRedirectGuardIfClean' ), PHP_INT_MAX );
+		add_action( 'shutdown', array( self::class, 'consume_redirect_guard_if_clean' ), PHP_INT_MAX );
 	}
 
 	/**
@@ -398,7 +404,7 @@ class SSO_Helpers {
 	/**
 	 * Handle SSO login.
 	 *
-	 * @param string $token
+	 * @param string $token SSO token.
 	 */
 	public static function handleLogin( $token ) {
 
@@ -414,10 +420,10 @@ class SSO_Helpers {
 			exit;
 		}
 
-		$isValid = self::validateToken( $token );
+		$is_valid = self::validateToken( $token );
 
 		// Invalid token
-		if ( ! $isValid ) {
+		if ( ! $is_valid ) {
 			self::triggerFailure();
 			exit;
 		}

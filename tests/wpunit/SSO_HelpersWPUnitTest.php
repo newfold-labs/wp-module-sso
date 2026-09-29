@@ -38,7 +38,7 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$this->user_id = $this->factory()->user->create( array( 'user_login' => 'sso_test_user' ) );
-		SSO_Helpers::clearRedirectPin();
+		SSO_Helpers::clear_redirect_pin();
 		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
 	}
 
@@ -48,7 +48,7 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 	 * @return void
 	 */
 	public function tearDown(): void {
-		SSO_Helpers::clearRedirectPin();
+		SSO_Helpers::clear_redirect_pin();
 		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
 		if ( $this->wp_login_callback ) {
 			remove_action( 'wp_login', $this->wp_login_callback );
@@ -149,7 +149,7 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( 0 );
 		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, 'http://example.test/target', 30 );
 
-		SSO_Helpers::guardPendingRedirect();
+		SSO_Helpers::guard_pending_redirect();
 
 		$this->assertSame( 'http://example.test/other', apply_filters( 'wp_redirect', 'http://example.test/other' ) );
 
@@ -166,7 +166,7 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		wp_set_current_user( $this->user_id );
 		delete_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id );
 
-		SSO_Helpers::guardPendingRedirect();
+		SSO_Helpers::guard_pending_redirect();
 
 		$this->assertSame( 'http://example.test/other', apply_filters( 'wp_redirect', 'http://example.test/other' ) );
 	}
@@ -185,12 +185,12 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$target = admin_url( 'admin.php?page=intended-destination' );
 		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, SSO_Helpers::REDIRECT_GUARD_TTL );
 
-		SSO_Helpers::guardPendingRedirect();
+		SSO_Helpers::guard_pending_redirect();
 
 		$hijacked = admin_url( 'admin.php?page=some-onboarding-wizard' );
 		$this->assertSame( $target, apply_filters( 'wp_redirect', $hijacked ) );
 
-		SSO_Helpers::consumeRedirectGuardIfClean();
+		SSO_Helpers::consume_redirect_guard_if_clean();
 		$this->assertSame(
 			$target,
 			get_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id ),
@@ -209,8 +209,8 @@ class SSO_HelpersWPUnitTest extends \lucatume\WPBrowser\TestCase\WPTestCase {
 		$target = admin_url( 'admin.php?page=intended-destination' );
 		set_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id, $target, SSO_Helpers::REDIRECT_GUARD_TTL );
 
-		SSO_Helpers::guardPendingRedirect();
-		SSO_Helpers::consumeRedirectGuardIfClean();
+		SSO_Helpers::guard_pending_redirect();
+		SSO_Helpers::consume_redirect_guard_if_clean();
 
 		$this->assertFalse( get_transient( SSO_Helpers::REDIRECT_GUARD_KEY . $this->user_id ) );
 	}
